@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { SigninView } from "./SigninView";
+import { SigninView } from './SigninView';
 
 SigninViewContainer.propTypes = {};
 
