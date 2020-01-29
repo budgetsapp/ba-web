@@ -1,1 +1,1 @@
-export * from "./Signin/SigninViewContainer";
+export * from './Signin/SigninViewContainer';

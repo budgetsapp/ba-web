@@ -1,16 +1,16 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { SigninViewContainer } from "./components/views";
+import { SigninViewContainer } from './components/views';
 
 export function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/">
+        <Route path='/'>
           <SigninViewContainer />
         </Route>
-        <Route path="/signup">
+        <Route path='/signup'>
           <span>Sign Up</span>
         </Route>
       </Switch>
