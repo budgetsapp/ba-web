@@ -9,7 +9,7 @@ export function HomeRouter() {
   return (
     <React.Fragment>
       <Switch>
-        <ProtectedRoute exact path={appPath.home()}>
+        <ProtectedRoute exact path={appPath.dashboard()}>
           <DashboardViewContainer />
         </ProtectedRoute>
         <ProtectedRoute path={appPath.categories()}>

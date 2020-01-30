@@ -5,7 +5,7 @@ export class appPath {
   static signup() {
     return '/sign-up';
   }
-  static home() {
+  static dashboard() {
     return '/';
   }
   static categories() {

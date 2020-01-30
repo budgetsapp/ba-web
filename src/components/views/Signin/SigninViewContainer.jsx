@@ -25,7 +25,7 @@ export function SigninViewContainer(params) {
         storage.getItem(Storage.ACCESS_TOKEN_KEY)
       );
       console.log(JSON.stringify(res, null, 2));
-      history.push(appPath.home());
+      history.push(appPath.dashboard());
     } catch (e) {
       console.log('Error', e);
     } finally {

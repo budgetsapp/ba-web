@@ -15,7 +15,7 @@ export function Router() {
         <Route path={appPath.signup()}>
           <span>Sign Up</span>
         </Route>
-        <ProtectedRoute path={appPath.home()}>
+        <ProtectedRoute path={appPath.dashboard()}>
           <HomeViewContainer />
         </ProtectedRoute>
       </Switch>

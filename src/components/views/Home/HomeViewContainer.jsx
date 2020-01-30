@@ -8,7 +8,7 @@ export function HomeViewContainer() {
   function handleManuItemClick(menuItem) {
     switch (menuItem) {
       case 'dashboard':
-        history.push(appPath.home());
+        history.push(appPath.dashboard());
         break;
       case 'categories':
         history.push(appPath.categories());
