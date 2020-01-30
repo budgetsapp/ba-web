@@ -80,7 +80,7 @@ export function SigninView({ onSubmit }) {
                   onBlur={handleBlur('password')}
                 />
                 <Button
-                  color='teal'
+                  color='grey'
                   fluid
                   type='submit'
                   size='large'
