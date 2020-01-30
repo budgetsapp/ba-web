@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Image, Menu } from 'semantic-ui-react';
-import { HomeRouter } from './HomeRouter';
 import { PropTypes } from 'prop-types';
 
 HomeView.propTypes = {
@@ -9,7 +8,7 @@ HomeView.propTypes = {
 
 HomeView.defaultProps = {};
 
-export function HomeView({ onMenuItemClick }) {
+export function HomeView({ onMenuItemClick, children }) {
   return (
     <div>
       <Menu inverted>
@@ -30,9 +29,7 @@ export function HomeView({ onMenuItemClick }) {
           </Menu.Item>
         </Container>
       </Menu>
-      <div className='home-view__content'>
-        <HomeRouter />
-      </div>
+      <div className='home-view__content'>{children}</div>
     </div>
   );
 }

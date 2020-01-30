@@ -1,6 +1,8 @@
 import React from 'react';
-import { HomeView } from './HomeView';
 import { useHistory } from 'react-router-dom';
+
+import { HomeView } from './HomeView';
+import { HomeRouter } from './HomeRouter';
 import { appPath } from '../../../services/app-path';
 
 export function HomeViewContainer() {
@@ -18,5 +20,9 @@ export function HomeViewContainer() {
     }
   }
 
-  return <HomeView onMenuItemClick={handleManuItemClick} />;
+  return (
+    <HomeView onMenuItemClick={handleManuItemClick}>
+      <HomeRouter />
+    </HomeView>
+  );
 }
