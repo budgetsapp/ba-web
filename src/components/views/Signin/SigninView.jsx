@@ -1,41 +1,101 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Form, Button } from 'semantic-ui-react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 import './Signin.css';
 
-SigninView.propTypes = {};
+const DEFAULT_LOGIN = 'ba-user-1';
+const DEFAULT_PASSWORD = 'ba-password';
+
+SigninView.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
+
 SigninView.defaultProps = {};
 
-export function SigninView({}) {
+const formSchema = Yup.object().shape({
+  login: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  password: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required')
+});
+
+function getError(errors, touched, fieldName) {
+  const error =
+    errors[fieldName] && touched[fieldName] ? errors[fieldName] : '';
+  return error
+    ? {
+        content: error,
+        pointing: 'above'
+      }
+    : false;
+}
+
+export function SigninView({ onSubmit }) {
   return (
-    <div className='signin-view__main-container'>
-      <div className='signin-view__content'>
-        <Form>
-          <Form.Input
-            error={{
-              content: 'Please enter your first name',
-              pointing: 'below'
-            }}
-            fluid
-            label='First name'
-            placeholder='First name'
-            id='form-input-first-name'
-          />
-          <Form.Input
-            error='Please enter your last name'
-            fluid
-            label='Last name'
-            placeholder='Last name'
-          />
-          <Form.Checkbox
-            label='I agree to the Terms and Conditions'
-            error={{
-              content: 'You must agree to the terms and conditions',
-              pointing: 'left'
-            }}
-          />
-        </Form>
-      </div>
-    </div>
+    <Formik
+      initialValues={{
+        login: DEFAULT_LOGIN,
+        password: DEFAULT_PASSWORD
+      }}
+      validationSchema={formSchema}
+      onSubmit={(values, { setSubmitting }) => onSubmit(values, setSubmitting)}
+    >
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+        isSubmitting,
+        isValid
+      }) => {
+        return (
+          <div className='signin-view__main-container'>
+            <div className='signin-view__content'>
+              <Form className='signin-view__form'>
+                <Form.Input
+                  error={getError(errors, touched, 'login')}
+                  fluid
+                  label='Login'
+                  placeholder='Login'
+                  value={values.login}
+                  onChange={handleChange('login')}
+                  onBlur={handleBlur('login')}
+                />
+                <Form.Input
+                  error={getError(errors, touched, 'password')}
+                  fluid
+                  label='Password'
+                  placeholder='Password'
+                  value={values.password}
+                  onChange={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                />
+                <Button
+                  color='teal'
+                  fluid
+                  type='submit'
+                  size='large'
+                  disabled={!isValid || isSubmitting}
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                >
+                  Login
+                </Button>
+              </Form>
+            </div>
+          </div>
+        );
+      }}
+    </Formik>
   );
 }

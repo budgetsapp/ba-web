@@ -9,9 +9,13 @@
   padding: 20px;
   box-sizing: border-box;
   width: 100%;
-  max-width: 550px;
+  max-width: 400px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.signin-view__form {
+  flex: 1;
 }
