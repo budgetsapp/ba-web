@@ -5,6 +5,7 @@ export class appPath {
   static signup() {
     return '/sign-up';
   }
+  // the Route '/' need to have exact={true} prop
   static dashboard() {
     return '/';
   }

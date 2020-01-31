@@ -1,14 +1,22 @@
 import React from 'react';
 import { Container, Image, Menu } from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
+import { MenuItems } from './menu-items';
 
 HomeView.propTypes = {
-  onMenuItemClick: PropTypes.func.isRequired
+  onMenuItemClick: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  getIsActive: PropTypes.func
 };
 
-HomeView.defaultProps = {};
+HomeView.defaultProps = {
+  getIsActive: () => undefined
+};
 
-export function HomeView({ onMenuItemClick, children }) {
+export function HomeView({ onMenuItemClick, children, getIsActive }) {
   return (
     <div>
       <Menu inverted>
@@ -21,10 +29,18 @@ export function HomeView({ onMenuItemClick, children }) {
             />
             Project Name
           </Menu.Item>
-          <Menu.Item as='a' onClick={() => onMenuItemClick('dashboard')}>
+          <Menu.Item
+            as='a'
+            active={getIsActive(MenuItems.DASHBOARD)}
+            onClick={() => onMenuItemClick(MenuItems.DASHBOARD)}
+          >
             Dashboard
           </Menu.Item>
-          <Menu.Item as='a' onClick={() => onMenuItemClick('categories')}>
+          <Menu.Item
+            as='a'
+            active={getIsActive(MenuItems.CATEGORIES)}
+            onClick={() => onMenuItemClick(MenuItems.CATEGORIES)}
+          >
             Categories
           </Menu.Item>
         </Container>
