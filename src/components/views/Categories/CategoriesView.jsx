@@ -2,17 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { NoItems } from '../../../components/molecules/NoItems/NoItems';
+import { CategoriesList } from '../../../components/molecules/CategoriesList/CategoriesList';
 import './Categories.css';
 
 CategoriesView.propTypes = {
-  onAddClick: PropTypes.func.isRequired
+  onAddClick: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-export function CategoriesView({ onAddClick }) {
+CategoriesView.defaultProps = {};
+
+export function CategoriesView({ onAddClick, items }) {
   return (
     <div className='categories-view__container'>
-      <p style={{ color: 'grey', fontSize: 25 }}>Categories</p>
-      <NoItems onAddClick={onAddClick} />
+      {items.length !== 0 ? (
+        <CategoriesList items={items} onAddClick={onAddClick} />
+      ) : (
+        <NoItems onAddClick={onAddClick} />
+      )}
     </div>
   );
 }

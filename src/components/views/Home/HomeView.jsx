@@ -1,7 +1,9 @@
 import React from 'react';
 import { Container, Image, Menu } from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
+
 import { MenuItems } from './menu-items';
+import './Home.css';
 
 HomeView.propTypes = {
   onMenuItemClick: PropTypes.func.isRequired,
@@ -18,7 +20,7 @@ HomeView.defaultProps = {
 
 export function HomeView({ onMenuItemClick, children, getIsActive }) {
   return (
-    <div>
+    <div className='home-view__container'>
       <Menu inverted>
         <Container>
           <Menu.Item as='a' header>
