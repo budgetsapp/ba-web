@@ -12,4 +12,7 @@ export class appPath {
   static categories() {
     return '/categories';
   }
+  static addCategory() {
+    return '/categories/new';
+  }
 }

@@ -13,7 +13,7 @@ CategoriesList.defaultProps = {};
 export function CategoriesList({ onAddClick, items }) {
   return (
     <div className='categories-list__container'>
-      <Table celled striped compact>
+      <Table celled striped compact size='small'>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Image</Table.HeaderCell>
