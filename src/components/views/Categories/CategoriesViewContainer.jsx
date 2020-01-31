@@ -2,5 +2,7 @@ import React from 'react';
 import { CategoriesView } from './CategoriesView';
 
 export function CategoriesViewContainer() {
-  return <CategoriesView />;
+  function handleAddClick() {}
+
+  return <CategoriesView onAddClick={handleAddClick} />;
 }

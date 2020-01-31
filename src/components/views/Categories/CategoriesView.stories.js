@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 
 import { CategoriesView } from './CategoriesView';
 
@@ -8,4 +9,6 @@ export default {
   includeStories: /.*Story$/
 };
 
-export const BaseStory = () => <CategoriesView />;
+export const BaseStory = () => (
+  <CategoriesView onAddClick={action('onAddClick')} />
+);
