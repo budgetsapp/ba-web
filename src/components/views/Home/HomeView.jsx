@@ -21,7 +21,7 @@ HomeView.defaultProps = {
 export function HomeView({ onMenuItemClick, children, getIsActive }) {
   return (
     <div className='home-view__container'>
-      <Menu inverted>
+      <Menu inverted className='home-view__menu'>
         <Container>
           <Menu.Item as='a' header>
             <Image
@@ -47,7 +47,9 @@ export function HomeView({ onMenuItemClick, children, getIsActive }) {
           </Menu.Item>
         </Container>
       </Menu>
-      <div className='home-view__content'>{children}</div>
+      <div className='home-view__content'>
+        <div className='home-view__content-inner'>{children}</div>
+      </div>
     </div>
   );
 }

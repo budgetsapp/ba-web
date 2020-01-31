@@ -13,24 +13,29 @@ CategoriesList.defaultProps = {};
 export function CategoriesList({ onAddClick, items }) {
   return (
     <div className='categories-list__container'>
-      <Table celled>
+      <Table celled striped compact>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Image</Table.HeaderCell>
             <Table.HeaderCell>Category</Table.HeaderCell>
-            <Table.HeaderCell>Edit</Table.HeaderCell>
-            <Table.HeaderCell>Remove</Table.HeaderCell>
+            <Table.HeaderCell>Created</Table.HeaderCell>
+            <Table.HeaderCell collapsing colSpan='2'></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
           {items.map(item => {
             return (
-              <Table.Row>
+              <Table.Row key={item.id}>
                 <Table.Cell>{item.image_url}</Table.Cell>
                 <Table.Cell>{item.display_name}</Table.Cell>
-                <Table.Cell>Edit</Table.Cell>
-                <Table.Cell>Remove</Table.Cell>
+                <Table.Cell>{item.created_at}</Table.Cell>
+                <Table.Cell collapsing>
+                  <Button circular icon='edit' size='mini' />
+                </Table.Cell>
+                <Table.Cell collapsing>
+                  <Button circular icon='trash' size='mini' />
+                </Table.Cell>
               </Table.Row>
             );
           })}
@@ -41,7 +46,7 @@ export function CategoriesList({ onAddClick, items }) {
         className='categories-list__add-button'
         circular
         icon='plus'
-        size='massive'
+        size='big'
         onClick={() => onAddClick()}
       />
     </div>

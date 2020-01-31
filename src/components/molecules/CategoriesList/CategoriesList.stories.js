@@ -11,8 +11,5 @@ export default {
 };
 
 export const BaseStory = () => (
-  <CategoriesList
-    onAddNewCategoryClick={action('onAddNewCategoryClick')}
-    items={categories}
-  />
+  <CategoriesList onAddClick={action('onAddClick')} items={categories} />
 );
