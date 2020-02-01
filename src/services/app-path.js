@@ -7,7 +7,7 @@ export class appPath {
   }
   // the Route '/' need to have exact={true} prop
   static dashboard() {
-    return '/';
+    return '/dashboard';
   }
   static categories() {
     return '/categories';

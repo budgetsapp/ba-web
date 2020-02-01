@@ -1,20 +1,20 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { HomeView } from './HomeView';
+import { AppLayout } from './AppLayout';
 
 export default {
-  title: 'views/HomeView',
-  component: HomeView,
+  title: 'views/AppLayout',
+  component: AppLayout,
   includeStories: /.*Story$/
 };
 
 export const BaseStory = () => (
-  <HomeView
+  <AppLayout
     onMenuItemClick={menuItem => {
       action('onMenuItemClick')(menuItem);
     }}
   >
     <p>Content</p>
-  </HomeView>
+  </AppLayout>
 );

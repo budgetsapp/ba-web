@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import { HomeView } from './HomeView';
-import { HomeRouter } from './HomeRouter';
+import { AppLayout } from './AppLayout';
 import { appPath } from '../../../services/app-path';
 import { MenuItems } from './menu-items';
+import { RoutesSwitch } from '../../../routing/RoutesSwitch';
 
-export function HomeViewContainer() {
+export function AppLayoutContainer({ routes }) {
   const history = useHistory();
   const location = useLocation();
 
@@ -37,11 +37,11 @@ export function HomeViewContainer() {
   }
 
   return (
-    <HomeView
+    <AppLayout
       onMenuItemClick={handleManuItemClick}
       getIsActive={getIsMenuItemActive(location.pathname)}
     >
-      <HomeRouter />
-    </HomeView>
+      <RoutesSwitch routes={routes} />
+    </AppLayout>
   );
 }

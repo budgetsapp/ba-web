@@ -3,9 +3,9 @@ import { Container, Image, Menu } from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
 
 import { MenuItems } from './menu-items';
-import './Home.css';
+import './AppLayout.css';
 
-HomeView.propTypes = {
+AppLayout.propTypes = {
   onMenuItemClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -14,14 +14,14 @@ HomeView.propTypes = {
   getIsActive: PropTypes.func
 };
 
-HomeView.defaultProps = {
+AppLayout.defaultProps = {
   getIsActive: () => undefined
 };
 
-export function HomeView({ onMenuItemClick, children, getIsActive }) {
+export function AppLayout({ onMenuItemClick, children, getIsActive }) {
   return (
-    <div className='home-view__container'>
-      <Menu inverted className='home-view__menu'>
+    <div className='app-layout__container'>
+      <Menu inverted className='app-layout__menu'>
         <Container>
           <Menu.Item as='a' header>
             <Image
@@ -47,8 +47,8 @@ export function HomeView({ onMenuItemClick, children, getIsActive }) {
           </Menu.Item>
         </Container>
       </Menu>
-      <div className='home-view__content'>
-        <div className='home-view__content-inner'>{children}</div>
+      <div className='app-layout__content'>
+        <div className='app-layout__content-inner'>{children}</div>
       </div>
     </div>
   );

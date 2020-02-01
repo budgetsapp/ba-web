@@ -1,4 +1,4 @@
-.home-view__container {
+.app-layout__container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -6,17 +6,17 @@
   overflow: hidden;
 }
 
-.home-view__menu {
+.app-layout__menu {
   margin: 0;
 }
 
-.home-view__content {
+.app-layout__content {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.home-view__content-inner {
+.app-layout__content-inner {
   position: absolute;
   top: 0;
   right: 0;
