@@ -27,9 +27,9 @@ export function AppLayoutContainer({ routes }) {
     return function(menuItem) {
       switch (menuItem) {
         case MenuItems.DASHBOARD:
-          return currentPath === appPath.dashboard();
+          return currentPath.includes(appPath.dashboard());
         case MenuItems.CATEGORIES:
-          return currentPath === appPath.categories();
+          return currentPath.includes(appPath.categories());
         default:
           return false;
       }
