@@ -1,16 +1,16 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { HomeView } from '../../../components/views/Home/HomeView';
+import { AppLayout } from '../../../components/molecules/AppLayout/AppLayout';
 
-export const withHomeView = Component => {
+export const withAppLayout = Component => {
   return (
-    <HomeView
+    <AppLayout
       onMenuItemClick={menuItem => {
         action('onMenuItemClick')(menuItem);
       }}
     >
       <Component />
-    </HomeView>
+    </AppLayout>
   );
 };

@@ -4,12 +4,12 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { CategoriesView } from './CategoriesView';
 import { categories } from '../../../mocks/categories.mock';
-import { withHomeView } from '../../../test-utils/storybook/decorators/withHomeView';
+import { withAppLayout } from '../../../test-utils/storybook/decorators/withAppLayout';
 
 export default {
   title: 'views/CategoriesView',
   component: CategoriesView,
-  decorators: [withKnobs, withHomeView],
+  decorators: [withKnobs, withAppLayout],
   includeStories: /.*Story$/
 };
 

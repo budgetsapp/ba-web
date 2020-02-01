@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { AppLayout } from './AppLayout';
 
 export default {
-  title: 'views/AppLayout',
+  title: 'molecules/AppLayout',
   component: AppLayout,
   includeStories: /.*Story$/
 };
