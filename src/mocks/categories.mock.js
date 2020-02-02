@@ -1,6 +1,6 @@
 export const category = {
   id: '1',
-  display_name: 'taxi'
+  displayName: 'taxi'
 };
 
 export const categories = [

@@ -1,13 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { CategoryForm } from '../../molecules/CategoryForm/CategoryForm';
 import './EditCategoryView.css';
 
 EditCategoryView.propTypes = {
-  onSaveClick: PropTypes.func.isRequired
+  onSaveClick: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
 };
-EditCategoryView.defaultProps = {};
 
-export function EditCategoryView({ onSaveClick }) {
-  return <div className='edit-category-view__container'>Editing category</div>;
+export function EditCategoryView({ onSaveClick, item }) {
+  return (
+    <div className='edit-category-view__container'>
+      <CategoryForm
+        onSaveClick={onSaveClick}
+        item={item}
+        title={`Editing category ${item.displayName}`}
+        submitButtonTitle='Save changes'
+      />
+    </div>
+  );
 }

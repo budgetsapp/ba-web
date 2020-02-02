@@ -7,6 +7,9 @@ export function EditCategoryViewContainer() {
   let { id } = useParams();
   console.log('Editing ', id);
 
-  function handleSaveClick() {}
+  function handleSaveClick(values, setSubmitting) {
+    console.log(values);
+    setSubmitting(false);
+  }
   return <EditCategoryView onSaveClick={handleSaveClick} />;
 }
