@@ -5,7 +5,8 @@ import {
   SigninViewContainer,
   CategoriesViewContainer,
   DashboardViewContainer,
-  AddCategoryViewContainer
+  AddCategoryViewContainer,
+  EditCategoryViewContainer
 } from './components/views';
 import { AppLayoutContainer } from './components/molecules/AppLayout/AppLayoutContainer';
 import { RoutesSwitch } from './routing/RoutesSwitch';
@@ -45,6 +46,10 @@ const routes = [
       {
         path: '/categories/new',
         component: AddCategoryViewContainer
+      },
+      {
+        path: '/categories/:id',
+        component: EditCategoryViewContainer
       }
     ]
   }
