@@ -6,16 +6,18 @@ import './EditCategoryView.css';
 
 EditCategoryView.propTypes = {
   onSaveClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired
 };
 
-export function EditCategoryView({ onSaveClick, item }) {
+export function EditCategoryView({ onSaveClick, onCancelClick, item }) {
   return (
     <div className='edit-category-view__container'>
       <CategoryForm
         onSaveClick={onSaveClick}
+        onCancelClick={onCancelClick}
         item={item}
-        title={`Editing category ${item.displayName}`}
+        pageTitle={`Editing category '${item.displayName}'`}
         submitButtonTitle='Save changes'
       />
     </div>

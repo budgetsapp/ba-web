@@ -18,6 +18,7 @@ export const BaseStory = () => {
         action('onSaveClick')(values);
         setSubmitting(false);
       }}
+      onCancelClick={action('onCancelClick')}
     />
   );
 };

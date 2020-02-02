@@ -21,6 +21,7 @@ export const BaseStory = () => {
         setSubmitting(false);
         action('onSaveClick')(values);
       }}
+      onCancelClick={action('onCancelClick')}
       pageTitle={pageTitle}
       submitButtonTitle={submitButtonTitle}
       item={category}

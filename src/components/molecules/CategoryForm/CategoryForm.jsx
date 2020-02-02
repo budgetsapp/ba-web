@@ -10,6 +10,7 @@ import './CategoryForm.css';
 CategoryForm.propTypes = {
   item: PropTypes.object.isRequired,
   onSaveClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func.isRequired,
   pageTitle: PropTypes.string,
   submitButtonTitle: PropTypes.string
 };
@@ -28,6 +29,7 @@ const formSchema = Yup.object().shape({
 
 export function CategoryForm({
   onSaveClick,
+  onCancelClick,
   item,
   pageTitle,
   submitButtonTitle
@@ -65,18 +67,32 @@ export function CategoryForm({
               onChange={handleChange('displayName')}
               onBlur={handleBlur('displayName')}
             />
-            <Button
-              color='grey'
-              fluid
-              type='submit'
-              size='small'
-              disabled={!isValid || isSubmitting}
-              onClick={() => {
-                handleSubmit();
-              }}
-            >
-              {submitButtonTitle}
-            </Button>
+            <div className='category-form__buttons-container'>
+              <Button
+                secondary
+                fluid
+                type='submit'
+                size='small'
+                disabled={isSubmitting}
+                onClick={() => {
+                  onCancelClick();
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                fluid
+                primary
+                type='submit'
+                size='small'
+                disabled={!isValid || isSubmitting}
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {submitButtonTitle}
+              </Button>
+            </div>
           </Form>
         );
       }}

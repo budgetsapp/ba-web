@@ -5,10 +5,11 @@ import { CategoryForm } from '../../molecules/CategoryForm/CategoryForm';
 import './AddCategoryView.css';
 
 AddCategoryView.propTypes = {
-  onSaveClick: PropTypes.func.isRequired
+  onSaveClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func.isRequired
 };
 
-export function AddCategoryView({ onSaveClick }) {
+export function AddCategoryView({ onSaveClick, onCancelClick }) {
   const item = {
     displayName: ''
   };
@@ -16,6 +17,7 @@ export function AddCategoryView({ onSaveClick }) {
     <div className='add-category-view__container'>
       <CategoryForm
         onSaveClick={onSaveClick}
+        onCancelClick={onCancelClick}
         item={item}
         title='Adding new Category'
       />

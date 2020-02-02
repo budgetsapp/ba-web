@@ -1,15 +1,27 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import { EditCategoryView } from './EditCategoryView';
+import { appPath } from '../../../services/app-path';
 
 export function EditCategoryViewContainer() {
-  let { id } = useParams();
+  const history = useHistory();
+  const { id } = useParams();
   console.log('Editing ', id);
 
   function handleSaveClick(values, setSubmitting) {
     console.log(values);
     setSubmitting(false);
   }
-  return <EditCategoryView onSaveClick={handleSaveClick} />;
+
+  function handleCancelClick() {
+    history.push(appPath.categories());
+  }
+
+  return (
+    <EditCategoryView
+      onSaveClick={handleSaveClick}
+      onCancelClick={handleCancelClick}
+    />
+  );
 }
