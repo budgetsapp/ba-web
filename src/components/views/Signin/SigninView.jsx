@@ -4,6 +4,8 @@ import { Form, Button } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
+import { getError } from '../../../services/form';
+
 import './Signin.css';
 
 const DEFAULT_LOGIN = 'ba-user-1';
@@ -25,17 +27,6 @@ const formSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required')
 });
-
-function getError(errors, touched, fieldName) {
-  const error =
-    errors[fieldName] && touched[fieldName] ? errors[fieldName] : '';
-  return error
-    ? {
-        content: error,
-        pointing: 'above'
-      }
-    : false;
-}
 
 export function SigninView({ onSubmit }) {
   return (
