@@ -11,7 +11,13 @@ AddCategoryView.propTypes = {
 
 export function AddCategoryView({ onSaveClick, onCancelClick }) {
   const item = {
-    displayName: ''
+    id: '1',
+    amount: 1,
+    category: {
+      id: '1',
+      displayName: 'taxi'
+    },
+    date: 1580671467816
   };
   return (
     <div className='add-category-view__container'>
@@ -19,7 +25,8 @@ export function AddCategoryView({ onSaveClick, onCancelClick }) {
         onSaveClick={onSaveClick}
         onCancelClick={onCancelClick}
         item={item}
-        title='Adding new Category'
+        pageTitle='Adding new Category'
+        submitButtonTitle='Add'
       />
     </div>
   );

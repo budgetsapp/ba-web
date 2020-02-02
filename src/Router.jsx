@@ -7,7 +7,8 @@ import {
   DashboardViewContainer,
   AddCategoryViewContainer,
   EditCategoryViewContainer,
-  ExpensesViewContainer
+  ExpensesViewContainer,
+  AddExpenseViewContainer
 } from './components/views';
 import { AppLayoutContainer } from './components/molecules/AppLayout/AppLayoutContainer';
 import { RoutesSwitch } from './routing/RoutesSwitch';
@@ -28,7 +29,7 @@ const routes = [
     protected: true,
     routes: [
       {
-        path: '/dashboard',
+        path: appPath.dashboard(),
         exact: true,
         component: DashboardViewContainer
       }
@@ -63,6 +64,10 @@ const routes = [
         path: appPath.expenses(),
         exact: true,
         component: ExpensesViewContainer
+      },
+      {
+        path: appPath.addExpense(),
+        component: AddExpenseViewContainer
       }
     ]
   }

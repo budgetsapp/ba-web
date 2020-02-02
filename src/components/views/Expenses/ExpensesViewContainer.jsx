@@ -8,7 +8,7 @@ export function ExpensesViewContainer() {
   const history = useHistory();
 
   function handleAddClick() {
-    // history.push(appPath.addCategory());
+    history.push(appPath.addExpense());
   }
 
   return <ExpensesView onAddClick={handleAddClick} items={[]} />;

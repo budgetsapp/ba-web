@@ -24,4 +24,7 @@ export class appPath {
   static expenses() {
     return '/expenses';
   }
+  static addExpense() {
+    return '/expenses/new';
+  }
 }
