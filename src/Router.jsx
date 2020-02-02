@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import {
   SigninViewContainer,
@@ -39,16 +39,16 @@ const routes = [
     protected: true,
     routes: [
       {
-        path: '/categories',
+        path: appPath.categories(),
         exact: true,
         component: CategoriesViewContainer
       },
       {
-        path: '/categories/new',
+        path: appPath.addCategory(),
         component: AddCategoryViewContainer
       },
       {
-        path: '/categories/:id',
+        path: appPath.editCategory().template,
         component: EditCategoryViewContainer
       }
     ]
@@ -59,6 +59,13 @@ export function Router() {
   return (
     <BrowserRouter>
       <RoutesSwitch routes={routes} />
+      <Route>
+        <Redirect
+          to={{
+            pathname: appPath.login()
+          }}
+        />
+      </Route>
     </BrowserRouter>
   );
 }

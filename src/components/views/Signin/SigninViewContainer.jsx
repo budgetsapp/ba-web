@@ -4,8 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import { SigninView } from './SigninView';
 import { storage } from '../../../services/storage';
-import { Storage } from '../../../consts/storage';
+import { getIsAuthenticated } from '../../../services/auth';
 import { appPath } from '../../../services/app-path';
+import { Storage } from '../../../consts/storage';
 
 SigninViewContainer.propTypes = {};
 
@@ -16,6 +17,9 @@ const client = new BaAuthApiClient(URL, {
 
 export function SigninViewContainer(params) {
   const history = useHistory();
+  if (getIsAuthenticated()) {
+    history.push(appPath.dashboard());
+  }
 
   async function login({ login, password }, setSubmitting) {
     try {

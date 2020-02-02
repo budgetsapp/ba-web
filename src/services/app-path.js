@@ -15,4 +15,10 @@ export class appPath {
   static addCategory() {
     return '/categories/new';
   }
+  static editCategory() {
+    return {
+      template: `/categories/:id`,
+      build: id => `/categories/${id}`
+    };
+  }
 }
