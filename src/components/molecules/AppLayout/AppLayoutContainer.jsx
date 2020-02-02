@@ -18,6 +18,9 @@ export function AppLayoutContainer({ routes }) {
       case MenuItems.CATEGORIES:
         history.push(appPath.categories());
         break;
+      case MenuItems.EXPENSES:
+        history.push(appPath.expenses());
+        break;
       default:
         break;
     }
@@ -30,6 +33,8 @@ export function AppLayoutContainer({ routes }) {
           return currentPath.includes(appPath.dashboard());
         case MenuItems.CATEGORIES:
           return currentPath.includes(appPath.categories());
+        case MenuItems.EXPENSES:
+          return currentPath.includes(appPath.expenses());
         default:
           return false;
       }

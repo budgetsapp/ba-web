@@ -6,7 +6,8 @@ import {
   CategoriesViewContainer,
   DashboardViewContainer,
   AddCategoryViewContainer,
-  EditCategoryViewContainer
+  EditCategoryViewContainer,
+  ExpensesViewContainer
 } from './components/views';
 import { AppLayoutContainer } from './components/molecules/AppLayout/AppLayoutContainer';
 import { RoutesSwitch } from './routing/RoutesSwitch';
@@ -50,6 +51,18 @@ const routes = [
       {
         path: appPath.editCategory().template,
         component: EditCategoryViewContainer
+      }
+    ]
+  },
+  {
+    path: appPath.expenses(),
+    component: AppLayoutContainer, // works as wrapper
+    protected: true,
+    routes: [
+      {
+        path: appPath.expenses(),
+        exact: true,
+        component: ExpensesViewContainer
       }
     ]
   }

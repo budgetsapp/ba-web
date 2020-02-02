@@ -19,6 +19,20 @@ AppLayout.defaultProps = {
 };
 
 export function AppLayout({ onMenuItemClick, children, getIsActive }) {
+  const menuItems = [
+    {
+      id: MenuItems.DASHBOARD,
+      title: 'Dashboard'
+    },
+    {
+      id: MenuItems.CATEGORIES,
+      title: 'Categories'
+    },
+    {
+      id: MenuItems.EXPENSES,
+      title: 'Expenses'
+    }
+  ];
   return (
     <div className='app-layout__container'>
       <Menu inverted className='app-layout__menu'>
@@ -31,20 +45,18 @@ export function AppLayout({ onMenuItemClick, children, getIsActive }) {
             />
             Project Name
           </Menu.Item>
-          <Menu.Item
-            as='a'
-            active={getIsActive(MenuItems.DASHBOARD)}
-            onClick={() => onMenuItemClick(MenuItems.DASHBOARD)}
-          >
-            Dashboard
-          </Menu.Item>
-          <Menu.Item
-            as='a'
-            active={getIsActive(MenuItems.CATEGORIES)}
-            onClick={() => onMenuItemClick(MenuItems.CATEGORIES)}
-          >
-            Categories
-          </Menu.Item>
+          {menuItems.map(item => {
+            return (
+              <Menu.Item
+                key={item.id}
+                as='a'
+                active={getIsActive(item.id)}
+                onClick={() => onMenuItemClick(item.id)}
+              >
+                {item.title}
+              </Menu.Item>
+            );
+          })}
         </Container>
       </Menu>
       <div className='app-layout__content'>

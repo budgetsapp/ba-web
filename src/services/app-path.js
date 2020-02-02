@@ -21,4 +21,7 @@ export class appPath {
       build: id => `/categories/${id}`
     };
   }
+  static expenses() {
+    return '/expenses';
+  }
 }
