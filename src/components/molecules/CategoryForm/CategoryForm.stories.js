@@ -8,20 +8,21 @@ import { category } from '../../../mocks/categories.mock';
 export default {
   title: 'molecules/CategoryForm',
   component: CategoryForm,
-  decorator: [withKnobs],
+  decorators: [withKnobs],
   includeStories: /.*Story$/
 };
 
 export const BaseStory = () => {
-  // TODO: Fix knobs
-  const title = text('title', 'Adding new Category');
+  const pageTitle = text('pageTitle', 'Adding new Category');
+  const submitButtonTitle = text('submitButtonTitle', 'Save');
   return (
     <CategoryForm
       onSaveClick={(values, setSubmitting) => {
         setSubmitting(false);
         action('onSaveClick')(values);
       }}
-      title={title}
+      pageTitle={pageTitle}
+      submitButtonTitle={submitButtonTitle}
       item={category}
     />
   );

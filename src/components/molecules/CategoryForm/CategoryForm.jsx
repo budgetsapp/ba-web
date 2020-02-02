@@ -10,11 +10,13 @@ import './CategoryForm.css';
 CategoryForm.propTypes = {
   item: PropTypes.object.isRequired,
   onSaveClick: PropTypes.func.isRequired,
-  title: PropTypes.string
+  pageTitle: PropTypes.string,
+  submitButtonTitle: PropTypes.string
 };
 
 CategoryForm.defaultProps = {
-  title: ''
+  pageTitle: '',
+  submitButtonTitle: 'Save'
 };
 
 const formSchema = Yup.object().shape({
@@ -24,7 +26,12 @@ const formSchema = Yup.object().shape({
     .required('Required')
 });
 
-export function CategoryForm({ onSaveClick, item, title }) {
+export function CategoryForm({
+  onSaveClick,
+  item,
+  pageTitle,
+  submitButtonTitle
+}) {
   return (
     <Formik
       initialValues={{
@@ -47,7 +54,7 @@ export function CategoryForm({ onSaveClick, item, title }) {
       }) => {
         return (
           <Form>
-            <h3>{title}</h3>
+            <h3>{pageTitle}</h3>
             <Form.Input
               error={getError(errors, touched, 'displayName')}
               fluid
@@ -68,7 +75,7 @@ export function CategoryForm({ onSaveClick, item, title }) {
                 handleSubmit();
               }}
             >
-              Save
+              {submitButtonTitle}
             </Button>
           </Form>
         );

@@ -1,9 +1,7 @@
-export const category = [
-  {
-    id: '1',
-    display_name: 'taxi'
-  }
-];
+export const category = {
+  id: '1',
+  display_name: 'taxi'
+};
 
 export const categories = [
   {
