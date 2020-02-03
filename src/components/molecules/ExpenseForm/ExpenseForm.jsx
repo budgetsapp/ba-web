@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Dropdown } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -23,7 +23,10 @@ ExpenseForm.defaultProps = {
 
 const formSchema = Yup.object().shape({
   category: Yup.string().required('Required'),
-  amount: Yup.number().required('Required')
+  amount: Yup.number().required('Required'),
+  description: Yup.string()
+    .max(100, 'Too Long!')
+    .required('Required')
 });
 
 export function ExpenseForm({
@@ -78,6 +81,7 @@ export function ExpenseForm({
               selection
               value={values.category}
             />
+
             <Form.Input
               error={getError(errors, touched, 'amount')}
               fluid
@@ -87,6 +91,14 @@ export function ExpenseForm({
               value={values.amount}
               onChange={handleChange('amount')}
               onBlur={handleBlur('amount')}
+            />
+            <Form.TextArea
+              error={getError(errors, touched, 'description')}
+              label='Description'
+              placeholder='Description'
+              value={values.description}
+              onChange={handleChange('description')}
+              onBlur={handleBlur('description')}
             />
             <div className='expense-form__buttons-container'>
               <Button
