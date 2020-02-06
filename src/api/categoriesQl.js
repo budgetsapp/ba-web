@@ -10,3 +10,15 @@ export const GET_MY_CATEGORIES_QUERY = gql`
     }
   }
 `;
+
+export const CREATE_CATEGORY_MUTATION = gql`
+  mutation createCategory($displayName: String!) {
+    createCategory(displayName: $displayName) {
+      category {
+        id
+        createdAt
+        displayName
+      }
+    }
+  }
+`;
