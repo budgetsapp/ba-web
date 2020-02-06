@@ -28,8 +28,8 @@ export function CategoriesList({ onAddClick, items }) {
             return (
               <Table.Row key={item.id}>
                 <Table.Cell>{item.image_url}</Table.Cell>
-                <Table.Cell>{item.display_name}</Table.Cell>
-                <Table.Cell>{item.created_at}</Table.Cell>
+                <Table.Cell>{item.displayName}</Table.Cell>
+                <Table.Cell>{item.createdAt}</Table.Cell>
                 <Table.Cell collapsing>
                   <Button circular icon='edit' size='mini' />
                 </Table.Cell>
