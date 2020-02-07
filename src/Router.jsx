@@ -77,6 +77,13 @@ export function Router() {
   return (
     <BrowserRouter>
       <RoutesSwitch routes={routes} />
+      <Route path='/' exact>
+        <Redirect
+          to={{
+            pathname: appPath.login()
+          }}
+        />
+      </Route>
     </BrowserRouter>
   );
 }
