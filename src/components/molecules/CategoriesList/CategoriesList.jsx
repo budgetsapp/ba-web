@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Table } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react';
+import { Button, Table, Pagination } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import './CategoriesList.css';
@@ -8,7 +8,10 @@ CategoriesList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   onAddClick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func.isRequired,
-  onRemoveClick: PropTypes.func.isRequired
+  onRemoveClick: PropTypes.func.isRequired,
+  onItemsRequest: PropTypes.func.isRequired,
+  activePage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired
 };
 CategoriesList.defaultProps = {};
 
@@ -16,7 +19,10 @@ export function CategoriesList({
   onAddClick,
   onEditClick,
   onRemoveClick,
-  items
+  items,
+  activePage,
+  onItemsRequest,
+  totalPages
 }) {
   return (
     <div className='categories-list__container'>
@@ -57,6 +63,21 @@ export function CategoriesList({
             );
           })}
         </Table.Body>
+        <Table.Footer>
+          <Table.Row>
+            <Table.HeaderCell colSpan='5'>
+              <Pagination
+                floated='right'
+                activePage={activePage}
+                boundaryRange={2}
+                onPageChange={(e, data) => onItemsRequest(data.activePage)}
+                size='mini'
+                siblingRange={2}
+                totalPages={totalPages}
+              />
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Footer>
       </Table>
 
       <Button
