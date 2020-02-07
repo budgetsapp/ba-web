@@ -18,6 +18,7 @@ export function EditCategoryView({ onSaveClick, onCancelClick, item }) {
         onCancelClick={onCancelClick}
         item={item}
         pageTitle={`Editing category '${item.displayName}'`}
+        pageSubtitle={`Created at ${item.createdAt}`}
         submitButtonTitle='Save changes'
       />
     </div>

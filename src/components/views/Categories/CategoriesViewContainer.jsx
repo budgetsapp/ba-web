@@ -29,9 +29,19 @@ export function CategoriesViewContainer() {
     history.push(appPath.addCategory());
   }
 
+  function handleEditClick(id) {
+    history.push(appPath.editCategory().build(id));
+  }
+
+  function handleRemoveClick(id) {
+    // history.push(appPath.addCategory());
+  }
+
   return (
     <CategoriesView
       onAddClick={handleAddClick}
+      onEditClick={handleEditClick}
+      onRemoveClick={handleRemoveClick}
       items={myCategoriesData ? myCategoriesData.myCategories : []}
     />
   );

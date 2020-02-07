@@ -8,16 +8,19 @@ import { getError } from '../../../services/form';
 import './CategoryForm.css';
 
 CategoryForm.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object,
   onSaveClick: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired,
   pageTitle: PropTypes.string,
+  pageSubtitle: PropTypes.string,
   submitButtonTitle: PropTypes.string
 };
 
 CategoryForm.defaultProps = {
   pageTitle: '',
-  submitButtonTitle: 'Save'
+  pageSubtitle: '',
+  submitButtonTitle: 'Save',
+  item: {}
 };
 
 const formSchema = Yup.object().shape({
@@ -32,6 +35,7 @@ export function CategoryForm({
   onCancelClick,
   item,
   pageTitle,
+  pageSubtitle,
   submitButtonTitle
 }) {
   return (
@@ -57,6 +61,7 @@ export function CategoryForm({
         return (
           <Form>
             <h3>{pageTitle}</h3>
+            <span>{pageSubtitle}</span>
             <Form.Input
               error={getError(errors, touched, 'displayName')}
               fluid

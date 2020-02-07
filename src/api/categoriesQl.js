@@ -11,6 +11,17 @@ export const GET_MY_CATEGORIES_QUERY = gql`
   }
 `;
 
+export const GET_MY_CATEGORY_QUERY = gql`
+  query getMyCategory($id: ID!) {
+    category(id: $id) {
+      id
+      userId
+      createdAt
+      displayName
+    }
+  }
+`;
+
 export const CREATE_CATEGORY_MUTATION = gql`
   mutation createCategory($displayName: String!) {
     createCategory(displayName: $displayName) {

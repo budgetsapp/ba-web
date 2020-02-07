@@ -6,11 +6,18 @@ import './CategoriesList.css';
 
 CategoriesList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
-  onAddClick: PropTypes.func.isRequired
+  onAddClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onRemoveClick: PropTypes.func.isRequired
 };
 CategoriesList.defaultProps = {};
 
-export function CategoriesList({ onAddClick, items }) {
+export function CategoriesList({
+  onAddClick,
+  onEditClick,
+  onRemoveClick,
+  items
+}) {
   return (
     <div className='categories-list__container'>
       <Table celled striped compact size='small'>
@@ -31,10 +38,20 @@ export function CategoriesList({ onAddClick, items }) {
                 <Table.Cell>{item.displayName}</Table.Cell>
                 <Table.Cell>{item.createdAt}</Table.Cell>
                 <Table.Cell collapsing>
-                  <Button circular icon='edit' size='mini' />
+                  <Button
+                    circular
+                    icon='edit'
+                    size='mini'
+                    onClick={() => onEditClick(item.id)}
+                  />
                 </Table.Cell>
                 <Table.Cell collapsing>
-                  <Button circular icon='trash' size='mini' />
+                  <Button
+                    circular
+                    icon='trash'
+                    size='mini'
+                    onClick={() => onRemoveClick(item.id)}
+                  />
                 </Table.Cell>
               </Table.Row>
             );
