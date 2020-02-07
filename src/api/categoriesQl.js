@@ -33,3 +33,15 @@ export const CREATE_CATEGORY_MUTATION = gql`
     }
   }
 `;
+
+export const EDIT_CATEGORY_MUTATION = gql`
+  mutation editCategory($id: ID!, $categoryInput: CategoryInput!) {
+    editCategory(id: $id, categoryInput: $categoryInput) {
+      category {
+        id
+        createdAt
+        displayName
+      }
+    }
+  }
+`;

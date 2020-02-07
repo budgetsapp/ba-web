@@ -15,10 +15,15 @@ export function AddCategoryViewContainer() {
   ] = useMutation(CREATE_CATEGORY_MUTATION);
 
   async function handleSaveClick(values, setSubmitting) {
-    await createCategory({
-      variables: { displayName: values.displayName }
-    });
-    setSubmitting(false);
+    try {
+      await createCategory({
+        variables: { displayName: values.displayName }
+      });
+      history.push(appPath.categories());
+    } catch (e) {
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function handleCancelClick() {
