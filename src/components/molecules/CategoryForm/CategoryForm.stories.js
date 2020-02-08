@@ -14,6 +14,7 @@ export default {
 
 export const BaseStory = () => {
   const pageTitle = text('pageTitle', 'Adding new Category');
+  const pageSubtitle = text('pageSubtitle', 'Adding new Category');
   const submitButtonTitle = text('submitButtonTitle', 'Save');
   return (
     <CategoryForm
@@ -23,6 +24,7 @@ export const BaseStory = () => {
       }}
       onCancelClick={action('onCancelClick')}
       pageTitle={pageTitle}
+      pageSubtitle={pageSubtitle}
       submitButtonTitle={submitButtonTitle}
       item={category}
     />

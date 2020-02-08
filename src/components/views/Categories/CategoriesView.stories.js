@@ -10,7 +10,7 @@ export default {
   title: 'views/CategoriesView',
   component: CategoriesView,
   decorators: [withKnobs, withAppLayout],
-  includeStories: /.*Story$/
+  includeStories: /.*_Story$/ // Disabled, need to mock history
 };
 
 export const BaseStory = () => {
