@@ -31,7 +31,8 @@ export function ExpensesList({
   items,
   activePage,
   onItemsRequest,
-  totalPages
+  totalPages,
+  loading
 }) {
   return (
     <div className='expenses-list__container'>
