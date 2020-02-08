@@ -46,11 +46,7 @@ export function AppLayout({
       <Menu inverted className='app-layout__menu'>
         <Container>
           <Menu.Item as='a' header>
-            <Image
-              size='mini'
-              src='/logo.png'
-              style={{ marginRight: '1.5em' }}
-            />
+            <Image size='mini' src='' style={{ marginRight: '1.5em' }} />
             Project Name
           </Menu.Item>
           {menuItems.map(item => {

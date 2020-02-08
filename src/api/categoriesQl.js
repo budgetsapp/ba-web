@@ -18,6 +18,15 @@ export const GET_MY_CATEGORIES_TOTAL_QUERY = gql`
   }
 `;
 
+export const GET_SEARCH_MY_CATEGORIES_QUERY = gql`
+  query searchMyCategories($query: String!) {
+    searchMyCategories(query: $query) {
+      id
+      displayName
+    }
+  }
+`;
+
 export const GET_MY_CATEGORY_QUERY = gql`
   query getMyCategory($id: ID!) {
     category(id: $id) {

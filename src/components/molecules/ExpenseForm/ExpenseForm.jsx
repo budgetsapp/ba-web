@@ -12,7 +12,12 @@ ExpenseForm.propTypes = {
   onCancelClick: PropTypes.func.isRequired,
   pageTitle: PropTypes.string,
   submitButtonTitle: PropTypes.string,
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string,
+      text: PropTypes.string
+    })
+  ).isRequired,
   onCategoryQueryChange: PropTypes.func.isRequired
 };
 

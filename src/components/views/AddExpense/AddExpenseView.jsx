@@ -7,7 +7,12 @@ import './AddExpenseView.css';
 AddExpenseView.propTypes = {
   onSaveClick: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string,
+      text: PropTypes.string
+    })
+  ).isRequired,
   onCategoryQueryChange: PropTypes.func.isRequired
 };
 
