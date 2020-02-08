@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
 
 import { appPath } from '../../../services/app-path';
-import { AddExpenseView } from './AddExpenseView';
+import { AddExpenseForm } from './AddExpenseForm';
 import { GET_SEARCH_MY_CATEGORIES_QUERY } from '../../../api/categoriesQl';
 
-export function AddExpenseViewContainer() {
+export function AddExpenseFormContainer() {
   const history = useHistory();
 
   const [
@@ -55,7 +55,7 @@ export function AddExpenseViewContainer() {
     };
   });
   return (
-    <AddExpenseView
+    <AddExpenseForm
       onSaveClick={handleSaveClick}
       onCancelClick={handleCancelClick}
       categories={categories}

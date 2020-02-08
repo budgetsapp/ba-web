@@ -29,9 +29,7 @@ ExpenseForm.defaultProps = {
 const formSchema = Yup.object().shape({
   category: Yup.string().required('Required'),
   amount: Yup.number().required('Required'),
-  description: Yup.string()
-    .max(100, 'Too Long!')
-    .required('Required')
+  description: Yup.string().max(100, 'Too Long!')
 });
 
 export function ExpenseForm({

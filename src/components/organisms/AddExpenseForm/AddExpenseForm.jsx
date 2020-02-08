@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ExpenseForm } from '../../molecules/ExpenseForm/ExpenseForm';
-import './AddExpenseView.css';
+import './AddExpenseForm.css';
 
-AddExpenseView.propTypes = {
+AddExpenseForm.propTypes = {
   onSaveClick: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(
@@ -16,14 +16,14 @@ AddExpenseView.propTypes = {
   onCategoryQueryChange: PropTypes.func.isRequired
 };
 
-export function AddExpenseView({
+export function AddExpenseForm({
   onSaveClick,
   onCancelClick,
   categories,
   onCategoryQueryChange
 }) {
   return (
-    <div className='add-expense-view__container'>
+    <div className='add-expense-form__container'>
       <ExpenseForm
         onSaveClick={onSaveClick}
         onCancelClick={onCancelClick}
