@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button, Table, Pagination } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 

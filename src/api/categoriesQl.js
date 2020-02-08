@@ -12,6 +12,12 @@ export const GET_MY_CATEGORIES_QUERY = gql`
   }
 `;
 
+export const GET_MY_CATEGORIES_TOTAL_QUERY = gql`
+  query getMyCategoriesTotal {
+    myCategoriesTotal
+  }
+`;
+
 export const GET_MY_CATEGORY_QUERY = gql`
   query getMyCategory($id: ID!) {
     category(id: $id) {
