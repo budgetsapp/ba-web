@@ -1,11 +1,12 @@
 import React from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
 
 import { appPath } from '../../../services/app-path';
 import { AddExpenseForm } from './AddExpenseForm';
 import { GET_SEARCH_MY_CATEGORIES_QUERY } from '../../../api/categoriesQl';
+import { CREATE_EXPENSE_MUTATION } from '../../../api/expensesQl';
 
 export function AddExpenseFormContainer() {
   const history = useHistory();
@@ -19,9 +20,26 @@ export function AddExpenseFormContainer() {
     }
   ] = useLazyQuery(GET_SEARCH_MY_CATEGORIES_QUERY);
 
-  function handleSaveClick(values, setSubmitting) {
-    console.log(values);
-    setSubmitting(false);
+  const [
+    createExpense,
+    { loading: createExpenseLoading, error: createExpenseError }
+  ] = useMutation(CREATE_EXPENSE_MUTATION);
+
+  async function handleSaveClick(values, setSubmitting) {
+    console.log('values ===> ', values);
+    try {
+      await createExpense({
+        variables: {
+          categoryId: values.category,
+          amount: values.amount,
+          description: values.description
+        }
+      });
+      history.push(appPath.expenses());
+    } catch (e) {
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function handleCancelClick() {
