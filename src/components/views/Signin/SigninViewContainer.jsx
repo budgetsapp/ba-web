@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BaAuthApiClient from 'ba-auth-api-client';
 import { useHistory } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const client = new BaAuthApiClient(URL, {
   storage: storage
 });
 
-export function SigninViewContainer(params) {
+export function SigninViewContainer() {
   const history = useHistory();
   if (getIsAuthenticated()) {
     history.push(appPath.dashboard());

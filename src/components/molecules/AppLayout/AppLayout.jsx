@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image, Menu } from 'semantic-ui-react';
+import { Container, Image, Menu, Dropdown } from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
 
 import { MenuItems } from './menu-items';
@@ -11,14 +11,22 @@ AppLayout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  getIsActive: PropTypes.func
+  getIsActive: PropTypes.func,
+  userData: PropTypes.shape({
+    displayName: PropTypes.string
+  }).isRequired
 };
 
 AppLayout.defaultProps = {
   getIsActive: () => undefined
 };
 
-export function AppLayout({ onMenuItemClick, children, getIsActive }) {
+export function AppLayout({
+  onMenuItemClick,
+  children,
+  getIsActive,
+  userData
+}) {
   const menuItems = [
     {
       id: MenuItems.DASHBOARD,
@@ -57,6 +65,17 @@ export function AppLayout({ onMenuItemClick, children, getIsActive }) {
               </Menu.Item>
             );
           })}
+          <Menu.Menu position='right'>
+            <Dropdown item simple text={`Hello, ${userData.displayName}`}>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  onClick={() => onMenuItemClick(MenuItems.LOGOUT)}
+                >
+                  Log out
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Menu>
         </Container>
       </Menu>
       <div className='app-layout__content'>

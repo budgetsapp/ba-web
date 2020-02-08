@@ -5,10 +5,13 @@ import { AppLayout } from './AppLayout';
 import { appPath } from '../../../services/app-path';
 import { MenuItems } from './menu-items';
 import { RoutesSwitch } from '../../../routing/RoutesSwitch';
+import { useCurrentUser } from '../../../services/currentUser';
+import { logout } from '../../../services/auth';
 
 export function AppLayoutContainer({ routes }) {
   const history = useHistory();
   const location = useLocation();
+  const currentUser = useCurrentUser();
 
   function handleManuItemClick(menuItem) {
     switch (menuItem) {
@@ -20,6 +23,10 @@ export function AppLayoutContainer({ routes }) {
         break;
       case MenuItems.EXPENSES:
         history.push(appPath.expenses());
+        break;
+      case MenuItems.LOGOUT:
+        logout();
+        history.push(appPath.login());
         break;
       default:
         break;
@@ -45,6 +52,7 @@ export function AppLayoutContainer({ routes }) {
     <AppLayout
       onMenuItemClick={handleManuItemClick}
       getIsActive={getIsMenuItemActive(location.pathname)}
+      userData={currentUser}
     >
       <RoutesSwitch routes={routes} />
     </AppLayout>
