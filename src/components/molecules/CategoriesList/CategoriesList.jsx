@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './CategoriesList.css';
 
 CategoriesList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object),
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
   onAddClick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func.isRequired,
   onRemoveClick: PropTypes.func.isRequired,
@@ -63,21 +63,23 @@ export function CategoriesList({
             );
           })}
         </Table.Body>
-        <Table.Footer>
-          <Table.Row>
-            <Table.HeaderCell colSpan='5'>
-              <Pagination
-                floated='right'
-                activePage={activePage}
-                boundaryRange={2}
-                onPageChange={(e, data) => onItemsRequest(data.activePage)}
-                size='mini'
-                siblingRange={2}
-                totalPages={totalPages}
-              />
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
+        {totalPages > 1 && (
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell colSpan='5'>
+                <Pagination
+                  floated='right'
+                  activePage={activePage}
+                  boundaryRange={2}
+                  onPageChange={(e, data) => onItemsRequest(data.activePage)}
+                  size='mini'
+                  siblingRange={2}
+                  totalPages={totalPages}
+                />
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        )}
       </Table>
 
       <Button

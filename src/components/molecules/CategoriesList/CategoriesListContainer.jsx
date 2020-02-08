@@ -3,16 +3,12 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
 import { appPath } from '../../../services/app-path';
+import { PAGE_SIZE } from '../../../consts/table';
 import { GET_MY_CATEGORIES_QUERY } from '../../../api/categoriesQl';
-
+import { getPagesCount } from '../../../services/table';
 import { CategoriesList } from './CategoriesList';
 
-const PAGE_SIZE = 20;
 const INIT_PAGE = 1;
-
-function getPagesCount(items, pageSize) {
-  return Math.round(items / pageSize);
-}
 
 export function CategoriesListContainer() {
   const history = useHistory();
@@ -55,6 +51,9 @@ export function CategoriesListContainer() {
   }
 
   const categories = myCategoriesData ? myCategoriesData.myCategories : [];
+  const myCategoriesTotal = myCategoriesData
+    ? myCategoriesData.myCategoriesTotal
+    : 0;
   return (
     <CategoriesList
       onAddClick={handleAddClick}
@@ -63,10 +62,7 @@ export function CategoriesListContainer() {
       items={categories}
       onItemsRequest={handleItemsRequest}
       activePage={page}
-      totalPages={getPagesCount(
-        myCategoriesData ? myCategoriesData.myCategoriesTotal : 0,
-        PAGE_SIZE
-      )}
+      totalPages={getPagesCount(myCategoriesTotal)}
     />
   );
 }

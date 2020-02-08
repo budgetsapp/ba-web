@@ -1,16 +1,27 @@
 import React from 'react';
-import { Button, Table } from 'semantic-ui-react';
+import { Button, Table, Pagination } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import './ExpensesList.css';
 
 ExpensesList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object),
-  onAddClick: PropTypes.func.isRequired
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onAddClick: PropTypes.func.isRequired,
+  onRemoveClick: PropTypes.func.isRequired,
+  onItemsRequest: PropTypes.func.isRequired,
+  activePage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired
 };
 ExpensesList.defaultProps = {};
 
-export function ExpensesList({ onAddClick, items }) {
+export function ExpensesList({
+  onAddClick,
+  onRemoveClick,
+  items,
+  activePage,
+  onItemsRequest,
+  totalPages
+}) {
   return (
     <div className='expenses-list__container'>
       <Table celled striped compact size='small'>
@@ -19,6 +30,7 @@ export function ExpensesList({ onAddClick, items }) {
             <Table.HeaderCell>Amount</Table.HeaderCell>
             <Table.HeaderCell>Category</Table.HeaderCell>
             <Table.HeaderCell>Created</Table.HeaderCell>
+            <Table.HeaderCell>Description</Table.HeaderCell>
             <Table.HeaderCell collapsing colSpan='1'></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -30,13 +42,36 @@ export function ExpensesList({ onAddClick, items }) {
                 <Table.Cell>{item.amount}</Table.Cell>
                 <Table.Cell>{item.category.displayName}</Table.Cell>
                 <Table.Cell>{item.createdAt}</Table.Cell>
+                <Table.Cell>{item.description}</Table.Cell>
                 <Table.Cell collapsing>
-                  <Button circular icon='trash' size='mini' />
+                  <Button
+                    circular
+                    icon='trash'
+                    size='mini'
+                    onClick={() => onRemoveClick(item.id)}
+                  />
                 </Table.Cell>
               </Table.Row>
             );
           })}
         </Table.Body>
+        {totalPages > 1 && (
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell colSpan='5'>
+                <Pagination
+                  floated='right'
+                  activePage={activePage}
+                  boundaryRange={2}
+                  onPageChange={(e, data) => onItemsRequest(data.activePage)}
+                  size='mini'
+                  siblingRange={2}
+                  totalPages={totalPages}
+                />
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        )}
       </Table>
 
       <Button
