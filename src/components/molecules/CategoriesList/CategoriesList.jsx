@@ -19,9 +19,12 @@ CategoriesList.propTypes = {
   onRemoveClick: PropTypes.func.isRequired,
   onItemsRequest: PropTypes.func.isRequired,
   activePage: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired
+  totalPages: PropTypes.number.isRequired,
+  loading: PropTypes.bool
 };
-CategoriesList.defaultProps = {};
+CategoriesList.defaultProps = {
+  loading: false
+};
 
 export function CategoriesList({
   onAddClick,
@@ -30,7 +33,8 @@ export function CategoriesList({
   items,
   activePage,
   onItemsRequest,
-  totalPages
+  totalPages,
+  loading
 }) {
   return (
     <div className='categories-list__container'>
@@ -61,7 +65,7 @@ export function CategoriesList({
                 </Table.Cell>
                 <Table.Cell collapsing>
                   <Button
-                    disabled={item.expensesTotal > 0}
+                    disabled={loading || item.expensesTotal > 0}
                     circular
                     icon='trash'
                     size='mini'

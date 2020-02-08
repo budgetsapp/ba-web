@@ -1,5 +1,9 @@
 import { PAGE_SIZE } from '../consts/table';
 
 export function getPagesCount(items) {
-  return Math.round(items / PAGE_SIZE);
+  return Math.ceil(items / PAGE_SIZE);
+}
+
+export function normalizePageNumber(page) {
+  return page - 1;
 }

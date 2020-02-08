@@ -62,3 +62,15 @@ export const EDIT_CATEGORY_MUTATION = gql`
     }
   }
 `;
+
+export const DELETE_CATEGORY_MUTATION = gql`
+  mutation deleteCategory($id: ID!) {
+    deleteCategory(id: $id) {
+      category {
+        id
+        createdAt
+        displayName
+      }
+    }
+  }
+`;

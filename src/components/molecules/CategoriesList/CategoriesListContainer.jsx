@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
 import { appPath } from '../../../services/app-path';
 import { PAGE_SIZE } from '../../../consts/table';
-import { GET_MY_CATEGORIES_QUERY } from '../../../api/categoriesQl';
-import { getPagesCount } from '../../../services/table';
+import {
+  GET_MY_CATEGORIES_QUERY,
+  DELETE_CATEGORY_MUTATION
+} from '../../../api/categoriesQl';
+import { getPagesCount, normalizePageNumber } from '../../../services/table';
 import { toLocalTime } from '../../../services/time';
 import { CategoriesList } from './CategoriesList';
 
@@ -25,10 +28,27 @@ export function CategoriesListContainer() {
     }
   ] = useLazyQuery(GET_MY_CATEGORIES_QUERY);
 
+  const [
+    deleteCategory,
+    { loading: deleteCategoryLoading, error: deleteCategoryError }
+  ] = useMutation(DELETE_CATEGORY_MUTATION, {
+    refetchQueries: [
+      {
+        query: GET_MY_CATEGORIES_QUERY,
+        variables: {
+          first: PAGE_SIZE,
+          offset: normalizePageNumber(page) * PAGE_SIZE
+        }
+      }
+    ]
+  });
+
   useEffect(() => {
-    const _activePage = page - 1;
     getMyCategories({
-      variables: { first: PAGE_SIZE, offset: _activePage * PAGE_SIZE }
+      variables: {
+        first: PAGE_SIZE,
+        offset: normalizePageNumber(page) * PAGE_SIZE
+      }
     });
   }, [page, getMyCategories]);
 
@@ -44,7 +64,7 @@ export function CategoriesListContainer() {
   }
 
   function handleRemoveClick(id) {
-    // history.push(appPath.addCategory());
+    deleteCategory({ variables: { id } });
   }
 
   function handleItemsRequest(activePage) {
@@ -72,6 +92,7 @@ export function CategoriesListContainer() {
       onItemsRequest={handleItemsRequest}
       activePage={page}
       totalPages={getPagesCount(myCategoriesTotal)}
+      loading={deleteCategoryLoading}
     />
   );
 }

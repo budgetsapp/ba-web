@@ -18,9 +18,12 @@ ExpensesList.propTypes = {
   onRemoveClick: PropTypes.func.isRequired,
   onItemsRequest: PropTypes.func.isRequired,
   activePage: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired
+  totalPages: PropTypes.number.isRequired,
+  loading: PropTypes.bool
 };
-ExpensesList.defaultProps = {};
+ExpensesList.defaultProps = {
+  loading: false
+};
 
 export function ExpensesList({
   onAddClick,
@@ -53,6 +56,7 @@ export function ExpensesList({
                 <Table.Cell>{item.description}</Table.Cell>
                 <Table.Cell collapsing>
                   <Button
+                    disabled={loading}
                     circular
                     icon='trash'
                     size='mini'
