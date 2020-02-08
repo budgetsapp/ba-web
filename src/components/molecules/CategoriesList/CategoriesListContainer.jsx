@@ -6,6 +6,7 @@ import { appPath } from '../../../services/app-path';
 import { PAGE_SIZE } from '../../../consts/table';
 import { GET_MY_CATEGORIES_QUERY } from '../../../api/categoriesQl';
 import { getPagesCount } from '../../../services/table';
+import { toLocalTime } from '../../../services/time';
 import { CategoriesList } from './CategoriesList';
 
 const INIT_PAGE = 1;
@@ -59,7 +60,15 @@ export function CategoriesListContainer() {
       onAddClick={handleAddClick}
       onEditClick={handleEditClick}
       onRemoveClick={handleRemoveClick}
-      items={categories}
+      items={categories.map(c => {
+        return {
+          id: c.id,
+          imageUrl: '',
+          displayName: c.displayName,
+          createdAt: toLocalTime(c.createdAt),
+          expensesTotal: c.expensesTotal
+        };
+      })}
       onItemsRequest={handleItemsRequest}
       activePage={page}
       totalPages={getPagesCount(myCategoriesTotal)}

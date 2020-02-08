@@ -5,7 +5,15 @@ import PropTypes from 'prop-types';
 import './CategoriesList.css';
 
 CategoriesList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      imageUrl: PropTypes.string,
+      displayName: PropTypes.string,
+      createdAt: PropTypes.string,
+      expensesTotal: PropTypes.number
+    })
+  ).isRequired,
   onAddClick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func.isRequired,
   onRemoveClick: PropTypes.func.isRequired,
@@ -40,7 +48,7 @@ export function CategoriesList({
           {items.map(item => {
             return (
               <Table.Row key={item.id}>
-                <Table.Cell>{item.image_url}</Table.Cell>
+                <Table.Cell>{item.imageUrl}</Table.Cell>
                 <Table.Cell>{item.displayName}</Table.Cell>
                 <Table.Cell>{item.createdAt}</Table.Cell>
                 <Table.Cell collapsing>
@@ -53,6 +61,7 @@ export function CategoriesList({
                 </Table.Cell>
                 <Table.Cell collapsing>
                   <Button
+                    disabled={item.expensesTotal > 0}
                     circular
                     icon='trash'
                     size='mini'

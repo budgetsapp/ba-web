@@ -6,6 +6,7 @@ import { appPath } from '../../../services/app-path';
 import { PAGE_SIZE } from '../../../consts/table';
 import { GET_MY_EXPENSES_QUERY } from '../../../api/expensesQl';
 import { getPagesCount } from '../../../services/table';
+import { toLocalTime } from '../../../services/time';
 import { ExpensesList } from './ExpensesList';
 
 const INIT_PAGE = 1;
@@ -54,7 +55,7 @@ export function ExpensesListContainer() {
           amount: e.amount,
           description: e.description,
           categoryName: e.category.displayName,
-          createdAt: e.createdAt
+          createdAt: toLocalTime(e.createdAt)
         };
       })}
       onItemsRequest={handleItemsRequest}

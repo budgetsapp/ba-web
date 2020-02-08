@@ -8,6 +8,7 @@ export const GET_MY_CATEGORIES_QUERY = gql`
       userId
       createdAt
       displayName
+      expensesTotal
     }
   }
 `;
