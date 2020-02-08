@@ -5,7 +5,15 @@ import PropTypes from 'prop-types';
 import './ExpensesList.css';
 
 ExpensesList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      amount: PropTypes.number,
+      categoryName: PropTypes.string,
+      createdAt: PropTypes.string,
+      description: PropTypes.string
+    })
+  ).isRequired,
   onAddClick: PropTypes.func.isRequired,
   onRemoveClick: PropTypes.func.isRequired,
   onItemsRequest: PropTypes.func.isRequired,
@@ -40,7 +48,7 @@ export function ExpensesList({
             return (
               <Table.Row key={item.id}>
                 <Table.Cell>{item.amount}</Table.Cell>
-                <Table.Cell>{item.category.displayName}</Table.Cell>
+                <Table.Cell>{item.categoryName}</Table.Cell>
                 <Table.Cell>{item.createdAt}</Table.Cell>
                 <Table.Cell>{item.description}</Table.Cell>
                 <Table.Cell collapsing>

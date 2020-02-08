@@ -48,7 +48,15 @@ export function ExpensesListContainer() {
     <ExpensesList
       onAddClick={handleAddClick}
       onRemoveClick={handleRemoveClick}
-      items={expenses}
+      items={expenses.map(e => {
+        return {
+          id: e.id,
+          amount: e.amount,
+          description: e.description,
+          categoryName: e.category.displayName,
+          createdAt: e.createdAt
+        };
+      })}
       onItemsRequest={handleItemsRequest}
       activePage={page}
       totalPages={getPagesCount(myExpensesTotal)}
