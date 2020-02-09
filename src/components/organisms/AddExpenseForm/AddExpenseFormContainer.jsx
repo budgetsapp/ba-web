@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
@@ -19,6 +19,12 @@ export function AddExpenseFormContainer() {
       data: searchMyCategoriesData
     }
   ] = useLazyQuery(GET_SEARCH_MY_CATEGORIES_QUERY);
+
+  useEffect(() => {
+    searchMyCategories({
+      variables: { query: '' }
+    });
+  }, []);
 
   const [
     createExpense,
