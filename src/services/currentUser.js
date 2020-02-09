@@ -17,11 +17,14 @@ export function buildEmptyUser() {
 
 export function useCurrentUser() {
   const token = storage.getItem(Storage.ACCESS_TOKEN_KEY);
-  const decoded = JSON.parse(decode(token));
-  return buildUser(
-    decoded.user_claims.id,
-    decoded.user_claims.roles,
-    decoded.user_claims.display_name,
-    decoded.identity
-  );
+  if (token) {
+    const decoded = JSON.parse(decode(token));
+    return buildUser(
+      decoded.user_claims.id,
+      decoded.user_claims.roles,
+      decoded.user_claims.display_name,
+      decoded.identity
+    );
+  }
+  return buildEmptyUser();
 }

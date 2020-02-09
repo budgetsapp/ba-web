@@ -1,19 +1,13 @@
 import React from 'react';
-import BaAuthApiClient from 'ba-auth-api-client';
 import { useHistory } from 'react-router-dom';
 
 import { SigninForm } from './SigninForm';
 import { storage } from '../../../services/storage';
-import { getIsAuthenticated } from '../../../services/auth';
+import { getIsAuthenticated, login as authLogin } from '../../../services/auth';
 import { appPath } from '../../../services/app-path';
 import { Storage } from '../../../consts/storage';
 
 SigninFormContainer.propTypes = {};
-
-const URL = 'http://localhost:5011';
-const client = new BaAuthApiClient(URL, {
-  storage: storage
-});
 
 export function SigninFormContainer() {
   const history = useHistory();
@@ -23,7 +17,7 @@ export function SigninFormContainer() {
 
   async function login({ login, password }, setSubmitting) {
     try {
-      const res = await client.login(login, password);
+      const res = await authLogin(login, password);
       console.log(
         'access_token recieved',
         storage.getItem(Storage.ACCESS_TOKEN_KEY)
