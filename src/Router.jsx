@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import {
-  SigninViewContainer,
-  CategoriesViewContainer,
-  DashboardViewContainer,
-  AddCategoryViewContainer,
-  EditCategoryViewContainer,
-  ExpensesViewContainer,
-  AddExpenseViewContainer
+  SigninView,
+  CategoriesView,
+  DashboardView,
+  AddCategoryView,
+  EditCategoryView,
+  ExpensesView,
+  AddExpenseView
 } from './components/views';
 import { AppLayoutContainer } from './components/molecules/AppLayout/AppLayoutContainer';
 import { RoutesSwitch } from './routing/RoutesSwitch';
@@ -17,7 +17,7 @@ import { appPath } from './services/app-path';
 const routes = [
   {
     path: appPath.login(),
-    component: SigninViewContainer
+    component: SigninView
   },
   {
     path: appPath.signup(),
@@ -31,7 +31,7 @@ const routes = [
       {
         path: appPath.dashboard(),
         exact: true,
-        component: DashboardViewContainer
+        component: DashboardView
       }
     ]
   },
@@ -43,15 +43,15 @@ const routes = [
       {
         path: appPath.categories(),
         exact: true,
-        component: CategoriesViewContainer
+        component: CategoriesView
       },
       {
         path: appPath.addCategory(),
-        component: AddCategoryViewContainer
+        component: AddCategoryView
       },
       {
         path: appPath.editCategory().template,
-        component: EditCategoryViewContainer
+        component: EditCategoryView
       }
     ]
   },
@@ -63,11 +63,11 @@ const routes = [
       {
         path: appPath.expenses(),
         exact: true,
-        component: ExpensesViewContainer
+        component: ExpensesView
       },
       {
         path: appPath.addExpense(),
-        component: AddExpenseViewContainer
+        component: AddExpenseView
       }
     ]
   }

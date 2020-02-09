@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CategoryForm } from '../../molecules/CategoryForm/CategoryForm';
-import './AddCategoryView.css';
+import './AddCategoryForm.css';
 
-AddCategoryView.propTypes = {
+AddCategoryForm.propTypes = {
   onSaveClick: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired
 };
 
-export function AddCategoryView({ onSaveClick, onCancelClick }) {
+export function AddCategoryForm({ onSaveClick, onCancelClick }) {
   return (
-    <div className='add-category-view__container'>
+    <div className='add-category-form__container'>
       <CategoryForm
         onSaveClick={onSaveClick}
         onCancelClick={onCancelClick}

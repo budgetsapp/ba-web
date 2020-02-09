@@ -5,7 +5,7 @@ import './AddExpenseView.css';
 
 export function AddExpenseView() {
   return (
-    <div>
+    <div className='add-expense-view__container'>
       <AddExpenseFormContainer />
     </div>
   );

@@ -2,11 +2,13 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
-import { CategoriesView } from './CategoriesView';
+import { NoItems } from '../../../components/molecules/NoItems/NoItems';
+import { CategoriesListContainer } from '../../../components/molecules/CategoriesList/CategoriesListContainer';
 import { appPath } from '../../../services/app-path';
 import { GET_MY_CATEGORIES_TOTAL_QUERY } from '../../../api/categoriesQl';
+import './Categories.css';
 
-export function CategoriesViewContainer() {
+export function CategoriesView() {
   const history = useHistory();
 
   const {
@@ -22,12 +24,17 @@ export function CategoriesViewContainer() {
     history.push(appPath.addCategory());
   }
 
+  const myCategoriesTotal = myCategoriesTotalData
+    ? myCategoriesTotalData.myCategoriesTotal
+    : 0;
+
   return (
-    <CategoriesView
-      onAddClick={handleAddClick}
-      totalItems={
-        myCategoriesTotalData ? myCategoriesTotalData.myCategoriesTotal : 0
-      }
-    />
+    <div className='categories-view__container'>
+      {myCategoriesTotal !== 0 ? (
+        <CategoriesListContainer />
+      ) : (
+        <NoItems onAddClick={handleAddClick} />
+      )}
+    </div>
   );
 }

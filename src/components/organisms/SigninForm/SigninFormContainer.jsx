@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BaAuthApiClient from 'ba-auth-api-client';
 import { useHistory } from 'react-router-dom';
 
-import { SigninView } from './SigninView';
+import { SigninForm } from './SigninForm';
 import { storage } from '../../../services/storage';
 import { getIsAuthenticated } from '../../../services/auth';
 import { appPath } from '../../../services/app-path';
 import { Storage } from '../../../consts/storage';
 
-SigninViewContainer.propTypes = {};
+SigninFormContainer.propTypes = {};
 
 const URL = 'http://localhost:5011';
 const client = new BaAuthApiClient(URL, {
   storage: storage
 });
 
-export function SigninViewContainer() {
+export function SigninFormContainer() {
   const history = useHistory();
   if (getIsAuthenticated()) {
     history.push(appPath.dashboard());
@@ -37,5 +37,5 @@ export function SigninViewContainer() {
     }
   }
 
-  return <SigninView onSubmit={login} />;
+  return <SigninForm onSubmit={login} />;
 }

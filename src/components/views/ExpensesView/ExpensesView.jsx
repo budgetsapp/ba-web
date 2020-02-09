@@ -2,11 +2,13 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
-import { ExpensesView } from './ExpensesView';
+import { NoItems } from '../../../components/molecules/NoItems/NoItems';
+import { ExpensesListContainer } from '../../../components/molecules/ExpensesList/ExpensesListContainer';
 import { appPath } from '../../../services/app-path';
 import { GET_MY_EXPENSES_TOTAL_QUERY } from '../../../api/expensesQl';
+import './Expenses.css';
 
-export function ExpensesViewContainer() {
+export function ExpensesView() {
   const history = useHistory();
 
   const {
@@ -22,10 +24,17 @@ export function ExpensesViewContainer() {
     history.push(appPath.addExpense());
   }
 
+  const myExpensesTotal = myExpensesTotalData
+    ? myExpensesTotalData.myExpensesTotal
+    : 0;
+
   return (
-    <ExpensesView
-      onAddClick={handleAddClick}
-      totalItems={myExpensesTotalData ? myExpensesTotalData.myExpensesTotal : 0}
-    />
+    <div className='expenses-view__container'>
+      {myExpensesTotal !== 0 ? (
+        <ExpensesListContainer />
+      ) : (
+        <NoItems onAddClick={handleAddClick} />
+      )}
+    </div>
   );
 }

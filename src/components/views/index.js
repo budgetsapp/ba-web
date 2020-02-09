@@ -1,7 +1,7 @@
-export { SigninViewContainer } from './Signin/SigninViewContainer';
-export { CategoriesViewContainer } from './Categories/CategoriesViewContainer';
-export { DashboardViewContainer } from './Dashboard/DashboardViewContainer';
-export { AddCategoryViewContainer } from './AddCategory/AddCategoryViewContainer';
-export { EditCategoryViewContainer } from './EditCategory/EditCategoryViewContainer';
-export { ExpensesViewContainer } from './Expenses/ExpensesViewContainer';
-export { AddExpenseViewContainer } from './AddExpenseView/AddExpenseViewContainer';
+export { SigninView } from './SigninView/SigninView';
+export { CategoriesView } from './CategoriesView/CategoriesView';
+export { DashboardView } from './DashboardView/DashboardView';
+export { AddCategoryView } from './AddCategoryView/AddCategoryView';
+export { EditCategoryView } from './EditCategoryView/EditCategoryView';
+export { ExpensesView } from './ExpensesView/ExpensesView';
+export { AddExpenseView } from './AddExpenseView/AddExpenseView';

@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
 import { appPath } from '../../../services/app-path';
-import { AddCategoryView } from './AddCategoryView';
+import { AddCategoryForm } from './AddCategoryForm';
 import { CREATE_CATEGORY_MUTATION } from '../../../api/categoriesQl';
 
-export function AddCategoryViewContainer() {
+export function AddCategoryFormContainer() {
   const history = useHistory();
 
   const [
@@ -31,7 +31,7 @@ export function AddCategoryViewContainer() {
   }
 
   return (
-    <AddCategoryView
+    <AddCategoryForm
       onSaveClick={handleSaveClick}
       onCancelClick={handleCancelClick}
     />

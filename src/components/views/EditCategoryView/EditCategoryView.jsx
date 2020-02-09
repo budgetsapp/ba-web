@@ -2,14 +2,16 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { EditCategoryView } from './EditCategoryView';
+import { CategoryForm } from '../../molecules/CategoryForm/CategoryForm';
+import { toLocalTime } from '../../../services/time';
 import { appPath } from '../../../services/app-path';
 import {
   GET_MY_CATEGORY_QUERY,
   EDIT_CATEGORY_MUTATION
 } from '../../../api/categoriesQl';
+import './EditCategoryView.css';
 
-export function EditCategoryViewContainer() {
+export function EditCategoryView() {
   const history = useHistory();
   const { id } = useParams();
 
@@ -51,10 +53,15 @@ export function EditCategoryViewContainer() {
   }
 
   return (
-    <EditCategoryView
-      item={myCategoryData.category}
-      onSaveClick={handleSaveClick}
-      onCancelClick={handleCancelClick}
-    />
+    <div className='edit-category-view__container'>
+      <CategoryForm
+        onSaveClick={handleSaveClick}
+        onCancelClick={handleCancelClick}
+        item={myCategoryData.category}
+        pageTitle={`Editing category '${myCategoryData.displayName}'`}
+        pageSubtitle={`Created at ${toLocalTime(myCategoryData.createdAt)}`}
+        submitButtonTitle='Save changes'
+      />
+    </div>
   );
 }
