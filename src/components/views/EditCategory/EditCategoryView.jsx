@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CategoryForm } from '../../molecules/CategoryForm/CategoryForm';
+import { toLocalTime } from '../../../services/time';
 import './EditCategoryView.css';
 
 EditCategoryView.propTypes = {
@@ -18,7 +19,7 @@ export function EditCategoryView({ onSaveClick, onCancelClick, item }) {
         onCancelClick={onCancelClick}
         item={item}
         pageTitle={`Editing category '${item.displayName}'`}
-        pageSubtitle={`Created at ${item.createdAt}`}
+        pageSubtitle={`Created at ${toLocalTime(item.createdAt)}`}
         submitButtonTitle='Save changes'
       />
     </div>

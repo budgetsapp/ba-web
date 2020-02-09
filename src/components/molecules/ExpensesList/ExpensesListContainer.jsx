@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
 import { appPath } from '../../../services/app-path';
 import { PAGE_SIZE } from '../../../consts/table';
-import { GET_MY_EXPENSES_QUERY } from '../../../api/expensesQl';
-import { getPagesCount } from '../../../services/table';
+import {
+  GET_MY_EXPENSES_QUERY,
+  DELETE_EXPENSE_MUTATION
+} from '../../../api/expensesQl';
+import { getPagesCount, normalizePageNumber } from '../../../services/table';
 import { toLocalTime } from '../../../services/time';
 import { ExpensesList } from './ExpensesList';
 
@@ -21,10 +24,27 @@ export function ExpensesListContainer() {
     { loading: myExpensesLoading, error: myExpensesError, data: myExpensesData }
   ] = useLazyQuery(GET_MY_EXPENSES_QUERY);
 
+  const [
+    deleteExpense,
+    { loading: deleteExpenseLoading, error: deleteExpenseError }
+  ] = useMutation(DELETE_EXPENSE_MUTATION, {
+    refetchQueries: [
+      {
+        query: GET_MY_EXPENSES_QUERY,
+        variables: {
+          first: PAGE_SIZE,
+          offset: normalizePageNumber(page) * PAGE_SIZE
+        }
+      }
+    ]
+  });
+
   useEffect(() => {
-    const _activePage = page - 1;
     getMyExpenses({
-      variables: { first: PAGE_SIZE, offset: _activePage * PAGE_SIZE }
+      variables: {
+        first: PAGE_SIZE,
+        offset: normalizePageNumber(page) * PAGE_SIZE
+      }
     });
   }, [page, getMyExpenses]);
 
@@ -36,7 +56,7 @@ export function ExpensesListContainer() {
   }
 
   function handleRemoveClick(id) {
-    // history.push(appPath.addCategory());
+    deleteExpense({ variables: { id } });
   }
 
   function handleItemsRequest(activePage) {

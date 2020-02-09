@@ -26,7 +26,6 @@ export function AddExpenseFormContainer() {
   ] = useMutation(CREATE_EXPENSE_MUTATION);
 
   async function handleSaveClick(values, setSubmitting) {
-    console.log('values ===> ', values);
     try {
       await createExpense({
         variables: {

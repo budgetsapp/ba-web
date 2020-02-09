@@ -43,3 +43,17 @@ export const CREATE_EXPENSE_MUTATION = gql`
     }
   }
 `;
+
+export const DELETE_EXPENSE_MUTATION = gql`
+  mutation deleteExpense($id: ID!) {
+    deleteExpense(id: $id) {
+      expense {
+        id
+        userId
+        amount
+        description
+        createdAt
+      }
+    }
+  }
+`;
