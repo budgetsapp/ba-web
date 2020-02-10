@@ -31,7 +31,7 @@ export function useAuthClient(url) {
   const [user, setUser] = useState(_buildEmptyUser());
   const client = new BaAuthApiClient(url, {
     storage: storage,
-    refreshInterval_MS: 5000, // 5 * 60 * 10000, // 5 min
+    refreshInterval_MS: 5 * 60 * 10000, // 5 min
     tokensUpdatedCallback: ({ data }) => {
       setUser(_buildUser(data));
     }
