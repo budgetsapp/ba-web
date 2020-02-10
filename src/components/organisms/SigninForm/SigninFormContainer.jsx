@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { SigninForm } from './SigninForm';
-import { getIsAuthenticated, login as authLogin } from '../../../services/auth';
+import { useAuth } from '../../../services/auth';
 import { appPath } from '../../../services/app-path';
 
 SigninFormContainer.propTypes = {};
 
 export function SigninFormContainer() {
   const history = useHistory();
-  if (getIsAuthenticated()) {
+  const auth = useAuth();
+  if (auth.getIsAuthenticated()) {
     history.push(appPath.dashboard());
   }
 
   async function login({ login, password }, setSubmitting) {
     try {
-      const res = await authLogin(login, password);
-      console.log(JSON.stringify(res, null, 2));
+      await auth.login(login, password);
       history.push(appPath.dashboard());
     } catch (e) {
       console.log('Error', e);

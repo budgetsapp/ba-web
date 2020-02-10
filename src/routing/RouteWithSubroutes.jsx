@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { getIsAuthenticated } from '../services/auth';
+import { useAuth } from '../services/auth';
 import { appPath } from '../services/app-path';
 
 export function RouteWithSubroutes(route) {
+  const auth = useAuth();
   return (
     <Route
       path={route.path}
       exact={route.exact || false}
       render={props =>
-        !route.protected || getIsAuthenticated() ? (
+        !route.protected || auth.getIsAuthenticated() ? (
           // pass the sub-routes down to keep nesting
           <route.component {...props} routes={route.routes} />
         ) : (

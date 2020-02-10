@@ -3,14 +3,10 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import { storage } from './services/storage';
-import { refreshToken } from './services/auth';
 import { Storage } from './consts/storage';
 import { Router } from './Router';
+import { useAuthClient, AuthProvider } from './services/auth';
 import './App.css';
-
-window.addEventListener('load', () => {
-  refreshToken();
-});
 
 const client = new ApolloClient({
   uri: 'http://127.0.0.1:5010/graphql',
@@ -24,12 +20,20 @@ const client = new ApolloClient({
   }
 });
 
+const URL = 'http://localhost:5011';
+
 function App() {
+  const authClient = useAuthClient(URL);
+  window.addEventListener('load', () => {
+    authClient.autoUpdateToken();
+  });
   return (
     <ApolloProvider client={client}>
-      <div className='App'>
-        <Router />
-      </div>
+      <AuthProvider client={authClient}>
+        <div className='App'>
+          <Router />
+        </div>
+      </AuthProvider>
     </ApolloProvider>
   );
 }
