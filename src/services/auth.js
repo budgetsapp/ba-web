@@ -1,66 +1,83 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createContext, useState, useContext } from 'react';
-import BaAuthApiClient from 'ba-auth-api-client';
-
-import { storage } from '../services/storage';
-import { Storage } from '../consts/storage';
 
 const AuthClientContext = createContext();
 
-export function AuthProvider({ client, children }) {
+export function BaAuthApiProvider({ client, children }) {
+  function _buildUser(displayName) {
+    return {
+      displayName
+    };
+  }
+  function _buildCurrentUser(data) {
+    return _buildUser(data ? data.display_name : '');
+  }
+  function _buildEmptyUser() {
+    return _buildUser('User');
+  }
+
+  const [user, setUser] = useState(_buildEmptyUser());
+  const [refreshToken, setRefreshToken] = useState(undefined); // undefined means that value is not set yet
+  const [isRefreshTokenExpired, setIsRefreshTokenExpired] = useState(undefined);
+  useEffect(() => {
+    if (refreshToken) {
+      const isExpired = client.isRefreshTokenExpired(refreshToken);
+      setIsRefreshTokenExpired(isExpired);
+    }
+  }, [refreshToken]);
+
+  client.setTokensUpdatedCallback(({ refreshToken, accessToken, data }) => {
+    setRefreshToken(refreshToken);
+    const currentUser = accessToken
+      ? _buildCurrentUser(data)
+      : _buildEmptyUser();
+    setUser(currentUser);
+  });
+
+  useEffect(() => {
+    client.autoUpdateToken(true);
+  }, []);
+
+  const value = {
+    user,
+    login: async function(login, password) {
+      await client.login(login, password);
+      client.autoUpdateToken();
+    },
+    logout: function() {
+      client.logout();
+    },
+    autoUpdateToken: function() {
+      client.autoUpdateToken();
+    },
+    /**
+     * Intended to allow open an app if there is a refresh token
+     * Can be used for offline mode
+     */
+    getIsRefreshTokenExpired: function() {
+      return refreshToken === undefined ? false : isRefreshTokenExpired;
+    },
+    getIsAuthenticated: function() {
+      return refreshToken !== null && refreshToken !== undefined;
+    }
+  };
+
   return (
-    <AuthClientContext.Provider value={client}>
+    <AuthClientContext.Provider value={value}>
       {children}
     </AuthClientContext.Provider>
   );
 }
 
-export function useAuthClient(url) {
-  function _buildUser(data) {
-    return {
-      displayName: data ? data.display_name : ''
-    };
-  }
-
-  function _buildEmptyUser() {
-    return {
-      displayName: ''
-    };
-  }
-
-  const [user, setUser] = useState(_buildEmptyUser());
-  const client = new BaAuthApiClient(url, {
-    storage: storage,
-    refreshInterval_MS: 5 * 60 * 10000, // 5 min
-    tokensUpdatedCallback: ({ data }) => {
-      setUser(_buildUser(data));
-    }
-  });
-
-  function logout() {
-    client.logout();
-  }
-
-  async function login(login, password) {
-    return await client.login(login, password);
-  }
-
-  function autoUpdateToken() {
-    client.autoUpdateToken();
-  }
-
-  function getIsRefreshTokenExpired() {
-    const refreshToken = storage.getItem(Storage.REFRESH_TOKEN_KEY);
-    const isExpired = client.isRefreshTokenExpired(refreshToken);
-    return isExpired;
-  }
-
-  function getIsAuthenticated() {
-    return !getIsRefreshTokenExpired();
-  }
-
+export function useAuth() {
+  const {
+    login,
+    logout,
+    autoUpdateToken,
+    getIsAuthenticated,
+    getIsRefreshTokenExpired
+  } = useContext(AuthClientContext);
   return {
-    user,
     login,
     logout,
     autoUpdateToken,
@@ -69,6 +86,7 @@ export function useAuthClient(url) {
   };
 }
 
-export function useAuth() {
-  return useContext(AuthClientContext);
+export function useCurrentUser() {
+  const { user } = useContext(AuthClientContext);
+  return user;
 }

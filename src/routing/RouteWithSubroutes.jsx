@@ -11,7 +11,7 @@ export function RouteWithSubroutes(route) {
       path={route.path}
       exact={route.exact || false}
       render={props =>
-        !route.protected || auth.getIsAuthenticated() ? (
+        !route.protected || !auth.getIsRefreshTokenExpired() ? (
           // pass the sub-routes down to keep nesting
           <route.component {...props} routes={route.routes} />
         ) : (
