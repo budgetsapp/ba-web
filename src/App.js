@@ -5,12 +5,12 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { storage } from './services/storage';
 import { Storage } from './consts/storage';
 import { Router } from './Router';
-import BaAuthApiClient from 'ba-auth-api-client';
+import BaAuthApiClient from 'ba-auth-client-js';
 import { BaAuthApiProvider } from './services/auth';
 import './App.css';
 
 const apolloClient = new ApolloClient({
-  uri: 'http://127.0.0.1:5010/graphql',
+  uri: process.env.REACT_APP_BASE_URL,
   request: operation => {
     const token = storage.getItem(Storage.ACCESS_TOKEN_KEY);
     operation.setContext({
@@ -22,7 +22,7 @@ const apolloClient = new ApolloClient({
 });
 
 const authClient = new BaAuthApiClient({
-  serverUrl: 'http://localhost:5011',
+  serverUrl: process.env.REACT_APP_IDENTITY_URL,
   storage: storage,
   refreshInterval_MS: 5 * 60 * 10000 // 5 min
 });
