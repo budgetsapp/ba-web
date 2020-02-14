@@ -8,7 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.7",
-    "ba-auth-api-client": "budgetsapp/ba-auth-api-client#0794375",
+    "ba-auth-client-js": "budgetsapp/ba-auth-client-js#0794375",
     "formik": "^2.1.3",
     "graphql": "^14.6.0",
     "lodash": "^4.17.15",

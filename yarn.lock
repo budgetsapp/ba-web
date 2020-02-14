@@ -3223,9 +3223,9 @@ axobject-query@^2.0.2:
     "@babel/runtime" "^7.7.4"
     "@babel/runtime-corejs3" "^7.7.4"
 
-ba-auth-api-client@budgetsapp/ba-auth-api-client#0794375:
+ba-auth-client-js@budgetsapp/ba-auth-client-js#0794375:
   version "1.0.0"
-  resolved "https://codeload.github.com/budgetsapp/ba-auth-api-client/tar.gz/07943750dec931984df55764c70d9e6699f5cc48"
+  resolved "https://codeload.github.com/budgetsapp/ba-auth-client-js/tar.gz/07943750dec931984df55764c70d9e6699f5cc48"
   dependencies:
     "@babel/core" "^7.8.3"
     "@babel/plugin-transform-runtime" "^7.8.3"
