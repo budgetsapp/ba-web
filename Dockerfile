@@ -17,4 +17,7 @@ ENV REACT_APP_IDENTITY_URL=http://budgets-app:5011
 ENV REACT_APP_BASE_URL=http://budgets-app:5010/graphql
 
 FROM nginx:1.17.8
+
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
 COPY --from=builder /usr/app/build /usr/share/nginx/html
