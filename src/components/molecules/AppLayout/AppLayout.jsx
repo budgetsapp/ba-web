@@ -45,7 +45,11 @@ export function AppLayout({
     <div className='app-layout__container'>
       <Menu inverted className='app-layout__menu'>
         <Container>
-          <Menu.Item as='a' header>
+          <Menu.Item
+            as='a'
+            header
+            onClick={() => onMenuItemClick(MenuItems.APP_LOGO)}
+          >
             <Icon name='calculator' size='small' />
             Budgets app
           </Menu.Item>

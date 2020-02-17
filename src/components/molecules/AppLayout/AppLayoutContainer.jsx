@@ -15,6 +15,9 @@ export function AppLayoutContainer({ routes }) {
 
   function handleManuItemClick(menuItem) {
     switch (menuItem) {
+      case MenuItems.APP_LOGO:
+        history.push(appPath.dashboard());
+        break;
       case MenuItems.DASHBOARD:
         history.push(appPath.dashboard());
         break;
