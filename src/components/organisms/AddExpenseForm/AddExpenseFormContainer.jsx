@@ -7,9 +7,11 @@ import { appPath } from '../../../services/app-path';
 import { AddExpenseForm } from './AddExpenseForm';
 import { GET_SEARCH_MY_CATEGORIES_QUERY } from '../../../api/categoriesQl';
 import { CREATE_EXPENSE_MUTATION } from '../../../api/expensesQl';
+import { useSettings } from '../../../services/settings';
 
 export function AddExpenseFormContainer() {
   const history = useHistory();
+  const { currencyId } = useSettings();
 
   const [
     searchMyCategories,
@@ -83,6 +85,7 @@ export function AddExpenseFormContainer() {
       onCancelClick={handleCancelClick}
       categories={categories}
       onCategoryQueryChange={handleCategoryQueryChangeDebounced}
+      currencyId={currencyId}
     />
   );
 }

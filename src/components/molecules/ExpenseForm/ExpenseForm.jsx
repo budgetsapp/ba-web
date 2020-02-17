@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 import { getError } from '../../../services/form';
+import { currencyMap } from '../../../consts/currency';
 import './ExpenseForm.css';
 
 ExpenseForm.propTypes = {
@@ -18,7 +19,8 @@ ExpenseForm.propTypes = {
       text: PropTypes.string
     })
   ).isRequired,
-  onCategoryQueryChange: PropTypes.func.isRequired
+  onCategoryQueryChange: PropTypes.func.isRequired,
+  currencyId: PropTypes.string.isRequired
 };
 
 ExpenseForm.defaultProps = {
@@ -38,7 +40,8 @@ export function ExpenseForm({
   pageTitle,
   submitButtonTitle,
   categories,
-  onCategoryQueryChange
+  onCategoryQueryChange,
+  currencyId
 }) {
   const [query, setQuery] = useState('');
   return (
@@ -88,7 +91,7 @@ export function ExpenseForm({
             <Form.Input
               error={getError(errors, touched, 'amount')}
               fluid
-              label='Amount'
+              label={`Amount, ${currencyMap[currencyId].sign}`}
               placeholder='Amount'
               size='mini'
               value={values.amount}

@@ -58,8 +58,10 @@ export function EditCategoryView() {
         onSaveClick={handleSaveClick}
         onCancelClick={handleCancelClick}
         item={myCategoryData.category}
-        pageTitle={`Editing category '${myCategoryData.displayName}'`}
-        pageSubtitle={`Created at ${toLocalTime(myCategoryData.createdAt)}`}
+        pageTitle={`Editing category '${myCategoryData.category.displayName}'`}
+        pageSubtitle={`Created at ${toLocalTime(
+          myCategoryData.category.createdAt
+        )}`}
         submitButtonTitle='Save changes'
       />
     </div>

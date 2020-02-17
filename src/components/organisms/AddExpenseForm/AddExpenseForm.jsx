@@ -13,14 +13,16 @@ AddExpenseForm.propTypes = {
       text: PropTypes.string
     })
   ).isRequired,
-  onCategoryQueryChange: PropTypes.func.isRequired
+  onCategoryQueryChange: PropTypes.func.isRequired,
+  currencyId: PropTypes.string.isRequired
 };
 
 export function AddExpenseForm({
   onSaveClick,
   onCancelClick,
   categories,
-  onCategoryQueryChange
+  onCategoryQueryChange,
+  currencyId
 }) {
   return (
     <div className='add-expense-form__container'>
@@ -31,6 +33,7 @@ export function AddExpenseForm({
         submitButtonTitle='Add'
         categories={categories}
         onCategoryQueryChange={onCategoryQueryChange}
+        currencyId={currencyId}
       />
     </div>
   );
