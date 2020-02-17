@@ -1,9 +1,11 @@
 import React from 'react';
+import { ExpensesPieChartContainer } from '../../molecules/ExpensesPieChart/ExpensesPieChartContainer';
+import './Dashboard.css';
 
 export function DashboardView() {
   return (
-    <div style={{ backgroundColor: 'lightblue' }}>
-      <p style={{ color: 'white', fontSize: 25 }}>Dashboard</p>
+    <div className='dashboard-view__container'>
+      <ExpensesPieChartContainer />
     </div>
   );
 }
