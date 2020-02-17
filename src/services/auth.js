@@ -55,7 +55,10 @@ export function BaAuthApiProvider({ client, children }) {
      * Can be used for offline mode
      */
     getIsRefreshTokenExpired: function() {
-      return refreshToken === undefined ? false : isRefreshTokenExpired;
+      return (
+        refreshToken !== undefined &&
+        (refreshToken === null || isRefreshTokenExpired)
+      );
     },
     getIsAuthenticated: function() {
       return refreshToken !== null && refreshToken !== undefined;
