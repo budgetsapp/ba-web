@@ -8,7 +8,7 @@ ExpensesList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
-      amount: PropTypes.number,
+      amount: PropTypes.string, // with currency
       categoryName: PropTypes.string,
       createdAt: PropTypes.string,
       description: PropTypes.string

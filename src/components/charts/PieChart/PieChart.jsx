@@ -8,6 +8,7 @@ import {
 } from 'recharts';
 import PropTypes from 'prop-types';
 
+import { formatWithCurrency } from '../../../services/currency';
 import { colors } from '../../../consts/colors';
 
 import './PieChart.css';
@@ -19,29 +20,33 @@ PieChart.propTypes = {
       name: PropTypes.string,
       value: PropTypes.number
     })
-  ).isRequired
+  ).isRequired,
+  currencyId: PropTypes.string.isRequired
 };
 
-export function PieChart({ total, data }) {
+export function PieChart({ total, data, currencyId }) {
   const radius = 200;
   return (
     <div className='pie-chart__container'>
       <div className='pie-chart__summary'>
         <span className='pie-chart__summary__total-title'>Total:</span>
-        <span className='pie-chart__summary__total-value'>{total}</span>
+        <span className='pie-chart__summary__total-value'>
+          {formatWithCurrency(total, currencyId)}
+        </span>
       </div>
       <ResponsiveContainer>
         <PieChartRecharts>
           <Pie
             isAnimationActive={true}
             data={data}
+            dataKey={'value'}
             innerRadius={radius / 2}
             outerRadius={radius}
             // legendType={'rect'}
             labelLine={true}
-            label={label => {
-              return `${label.name} ${label.value}`;
-            }}
+            label={label =>
+              `${label.name}: ${formatWithCurrency(label.value, currencyId)}`
+            }
             animationDuration={700}
           >
             {data.map((entry, index) => (

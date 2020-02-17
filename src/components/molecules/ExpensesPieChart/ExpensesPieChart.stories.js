@@ -3,6 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 
 import { ExpensesPieChart } from './ExpensesPieChart';
 import { pieChartData, getTotal } from '../../../mocks/charts.mock';
+import { getCurrencySelect } from '../../../test-utils/storybook/knobs';
 
 export default {
   title: 'molecules/ExpensesPieChart',
@@ -12,7 +13,13 @@ export default {
 };
 
 export const BaseStory = () => {
+  const currencyId = getCurrencySelect();
+
   return (
-    <ExpensesPieChart total={getTotal(pieChartData)} data={pieChartData} />
+    <ExpensesPieChart
+      total={getTotal(pieChartData)}
+      data={pieChartData}
+      currencyId={currencyId}
+    />
   );
 };

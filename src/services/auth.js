@@ -24,7 +24,7 @@ export function BaAuthApiProvider({ client, children }) {
       const isExpired = client.isRefreshTokenExpired(refreshToken);
       setIsRefreshTokenExpired(isExpired);
     }
-  }, [refreshToken]);
+  }, [client, refreshToken]);
 
   client.setTokensUpdatedCallback(({ refreshToken, accessToken, data }) => {
     setRefreshToken(refreshToken);

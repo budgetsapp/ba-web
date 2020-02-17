@@ -11,11 +11,14 @@ import {
 import { getPagesCount, normalizePageNumber } from '../../../services/table';
 import { toLocalTime } from '../../../services/time';
 import { ExpensesList } from './ExpensesList';
+import { useSettings } from '../../../services/settings';
+import { formatWithCurrency } from '../../../services/currency';
 
 const INIT_PAGE = 1;
 
 export function ExpensesListContainer() {
   const history = useHistory();
+  const { currencyId } = useSettings();
 
   const [page, setPage] = useState(INIT_PAGE);
 
@@ -72,7 +75,7 @@ export function ExpensesListContainer() {
       items={expenses.map(e => {
         return {
           id: e.id,
-          amount: e.amount,
+          amount: formatWithCurrency(e.amount, currencyId),
           description: e.description,
           categoryName: e.category.displayName,
           createdAt: toLocalTime(e.createdAt)
