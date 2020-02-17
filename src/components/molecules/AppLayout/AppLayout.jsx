@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image, Menu, Dropdown } from 'semantic-ui-react';
+import { Container, Icon, Menu, Dropdown } from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
 
 import { MenuItems } from './menu-items';
@@ -46,8 +46,8 @@ export function AppLayout({
       <Menu inverted className='app-layout__menu'>
         <Container>
           <Menu.Item as='a' header>
-            <Image size='mini' src='' style={{ marginRight: '1.5em' }} />
-            Project Name
+            <Icon name='calculator' size='small' />
+            Budgets app
           </Menu.Item>
           {menuItems.map(item => {
             return (

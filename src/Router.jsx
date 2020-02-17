@@ -17,11 +17,13 @@ import { appPath } from './services/app-path';
 const routes = [
   {
     path: appPath.login(),
-    component: SigninView
+    component: SigninView,
+    documentTitle: ''
   },
   {
     path: appPath.signup(),
-    component: () => <span>Sign Up</span>
+    component: () => <span>Sign Up</span>,
+    documentTitle: ''
   },
   {
     path: appPath.dashboard(),
@@ -31,7 +33,8 @@ const routes = [
       {
         path: appPath.dashboard(),
         exact: true,
-        component: DashboardView
+        component: DashboardView,
+        documentTitle: 'Dashboard'
       }
     ]
   },
@@ -43,15 +46,18 @@ const routes = [
       {
         path: appPath.categories(),
         exact: true,
-        component: CategoriesView
+        component: CategoriesView,
+        documentTitle: 'Categories'
       },
       {
         path: appPath.addCategory(),
-        component: AddCategoryView
+        component: AddCategoryView,
+        documentTitle: 'New category'
       },
       {
         path: appPath.editCategory().template,
-        component: EditCategoryView
+        component: EditCategoryView,
+        documentTitle: 'Category'
       }
     ]
   },
@@ -63,11 +69,13 @@ const routes = [
       {
         path: appPath.expenses(),
         exact: true,
-        component: ExpensesView
+        component: ExpensesView,
+        documentTitle: 'Expenses'
       },
       {
         path: appPath.addExpense(),
-        component: AddExpenseView
+        component: AddExpenseView,
+        documentTitle: 'New expense'
       }
     ]
   }
