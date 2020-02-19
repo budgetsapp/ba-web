@@ -3058,12 +3058,9 @@ ba-auth-client-js@budgetsapp/ba-auth-client-js#0794375:
     webpack "^4.41.5"
     webpack-cli "^3.3.10"
 
-ba-identity-react-hooks@budgetsapp/ba-identity-react-hooks#cceab8a:
+ba-identity-react-hooks@budgetsapp/ba-identity-react-hooks#a1ece8e:
   version "1.0.0"
-  resolved "https://codeload.github.com/budgetsapp/ba-identity-react-hooks/tar.gz/cceab8acf6c2706f258f30c303d70ef18fa3fd04"
-  dependencies:
-    react "^16.12.0"
-    react-dom "^16.12.0"
+  resolved "https://codeload.github.com/budgetsapp/ba-identity-react-hooks/tar.gz/a1ece8ec4c8e74511f285e4a6cd78d771d267a64"
 
 babel-code-frame@^6.22.0:
   version "6.26.0"
