@@ -1,16 +1,16 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useIdentity, useCurrentUser } from 'ba-identity-react-hooks';
 
 import { AppLayout } from './AppLayout';
 import { appPath } from '../../../services/app-path';
 import { MenuItems } from './menu-items';
 import { RoutesSwitch } from '../../../routing/RoutesSwitch';
-import { useAuth, useCurrentUser } from '../../../services/auth';
 
 export function AppLayoutContainer({ routes }) {
   const history = useHistory();
   const location = useLocation();
-  const auth = useAuth();
+  const identity = useIdentity();
   const currentUser = useCurrentUser();
 
   function handleManuItemClick(menuItem) {
@@ -28,7 +28,7 @@ export function AppLayoutContainer({ routes }) {
         history.push(appPath.expenses());
         break;
       case MenuItems.LOGOUT:
-        auth.logout();
+        identity.logout();
         history.push(appPath.login());
         break;
       default:
