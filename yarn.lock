@@ -2797,15 +2797,15 @@ axobject-query@^2.0.2:
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.1.2.tgz#2bdffc0371e643e5f03ba99065d5179b9ca79799"
   integrity sha512-ICt34ZmrVt8UQnvPl6TVyDTkmhXmAyAT4Jh5ugfGUX4MOrZ+U/ZY6/sdylRw3qGNr9Ub5AJsaHeDMzNLehRdOQ==
 
-ba-identity-client-js@budgetsapp/ba-identity-client-js#5c532ab:
+ba-identity-client-js@budgetsapp/ba-identity-client-js#MVPv2:
   version "1.0.0"
   resolved "https://codeload.github.com/budgetsapp/ba-identity-client-js/tar.gz/5c532abb0590006a25d799e952356be61f65e724"
   dependencies:
     jwt-decode "^2.2.0"
 
-ba-identity-react-hooks@budgetsapp/ba-identity-react-hooks#ccb0971:
+ba-identity-react-hooks@budgetsapp/ba-identity-react-hooks#MVPv2:
   version "1.0.0"
-  resolved "https://codeload.github.com/budgetsapp/ba-identity-react-hooks/tar.gz/ccb0971c4119ece1a5442121e2ed2b3fa410043e"
+  resolved "https://codeload.github.com/budgetsapp/ba-identity-react-hooks/tar.gz/3d4a956cfc09b6bccf905a44648e51ede3191a47"
 
 babel-code-frame@^6.22.0:
   version "6.26.0"
