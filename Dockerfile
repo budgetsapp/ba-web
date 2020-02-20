@@ -11,10 +11,13 @@ COPY ./yarn.lock ./
 RUN yarn
 COPY ./ ./
 
-RUN yarn build
+ARG REACT_APP_IDENTITY_URL=http://budgets-app:5011
+ARG REACT_APP_BASE_URL=http://budgets-app:5010/graphql
 
-ENV REACT_APP_IDENTITY_URL=http://budgets-app:5011
-ENV REACT_APP_BASE_URL=http://budgets-app:5010/graphql
+ENV REACT_APP_IDENTITY_URL=${REACT_APP_IDENTITY_URL}
+ENV REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
+
+RUN yarn build
 
 FROM nginx:1.17.8
 
