@@ -1,12 +1,12 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import BaIdentityClient from 'ba-identity-client-js';
 import { BaIdentityProvider } from 'ba-identity-react-hooks';
 
 import { storage } from './services/storage';
 import { Storage } from './consts/storage';
 import { Router } from './Router';
-import BaAuthApiClient from 'ba-auth-client-js';
 import './App.css';
 
 const apolloClient = new ApolloClient({
@@ -21,7 +21,7 @@ const apolloClient = new ApolloClient({
   }
 });
 
-const authClient = new BaAuthApiClient({
+const identityClient = new BaIdentityClient({
   serverUrl: process.env.REACT_APP_IDENTITY_URL,
   storage: storage,
   refreshInterval_MS: 5 * 60 * 10000 // 5 min
@@ -30,7 +30,7 @@ const authClient = new BaAuthApiClient({
 function App() {
   return (
     <ApolloProvider client={apolloClient}>
-      <BaIdentityProvider client={authClient}>
+      <BaIdentityProvider client={identityClient}>
         <div className='App'>
           <Router />
         </div>
