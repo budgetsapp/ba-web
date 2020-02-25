@@ -11,8 +11,8 @@ COPY ./yarn.lock ./
 RUN yarn
 COPY ./ ./
 
-ARG REACT_APP_IDENTITY_URL=http://budgets-app:5011
-ARG REACT_APP_BASE_URL=http://budgets-app:5010/graphql
+ARG REACT_APP_IDENTITY_URL=http://budgetsapp.com:5011
+ARG REACT_APP_BASE_URL=http://budgetsapp.com:5010/graphql
 
 ENV REACT_APP_IDENTITY_URL=${REACT_APP_IDENTITY_URL}
 ENV REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
